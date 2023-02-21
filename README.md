@@ -1,3 +1,5 @@
+# Do 'npm i' for pre-installed packages
+
 # create your seperate folders
 
 <h3>pages</h3>
