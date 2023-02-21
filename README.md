@@ -6,14 +6,14 @@
 
 <ul>
  <li>index.jsx   //only for landing page</li>
- <li>to add another page please create a new folder</li>
+ <li>to add another page please create a new folder inside pages folder</li>
 </ul>
 
 <h3>components</h3>
 
 <ul>
  <li>create your components folder.</li>
- <li>and keep all the components related to your task.</li>
+ <li>and keep all the components inside your folder related to your task.</li>
 </ul>
 
 <h3>store</h3>
