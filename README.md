@@ -39,3 +39,5 @@ Don't modify
  <li>Redux Provider added</li>
  <li>BrowserRouter added</li>
 </ul>
+
+# logo and pre-loader is inside the images folder
