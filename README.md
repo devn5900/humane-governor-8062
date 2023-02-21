@@ -1,3 +1,5 @@
+# Make a pull request before committing any changes and before making a pull request.
+
 # Do 'npm i' for pre-installed packages
 
 # create your seperate folders
