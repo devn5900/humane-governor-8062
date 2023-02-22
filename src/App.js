@@ -8,10 +8,10 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <Box>
-      <Navbar />
+      {/* <Navbar /> */}
       {/* add your path in Routes/AllRoutes.jsx */}
       <AllRoutes />
-      <Footer />
+      {/* <Footer /> */}
     </Box>
   );
 }
