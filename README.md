@@ -53,6 +53,12 @@ Don't modify
  <li>Link your pages</li>
 </ul>
 
+# utils/api.js
+
+ <ul>
+ <li>write all api requests in this file</li>
+</ul>
+
 ## logo and pre-loader is inside the images folder
 
 <br>
