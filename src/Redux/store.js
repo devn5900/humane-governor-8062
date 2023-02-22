@@ -2,9 +2,13 @@ import { applyMiddleware, combineReducers, legacy_createStore, compose } from "r
 import thunk from "redux-thunk";
 import { adminReducer } from "./Admin/Admin.reducer";
 
-const combineReducer = combineReducers({
-  // add your reducer here
+import {reducer as accessoriesReducer} from "./Accessories/reducer";
+
+  const combineReducer = combineReducers({
+    // add your reducer here
+    accessories:accessoriesReducer,
   admin:adminReducer,
+
 
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
