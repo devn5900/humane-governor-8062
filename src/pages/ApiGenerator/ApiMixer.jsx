@@ -9,11 +9,20 @@ const ApiMixer = () => {
   }, []);
   const fetchData = async () => {
     let res = await axios.get(`http://localhost:8080/products`);
-    // console.log(res.data);
     // Don't Touch this function
     // setData(res.data);
     // update(data);
+    // updateId(res.data);
   };
+
+  const updateId = (data) => {
+    let val = data?.map((el, i) => {
+      el.rating = Number(Math.random() * 4 + 1).toFixed(1);
+      return el;
+    });
+    setUpdatedData(val);
+  };
+
   const update = (data) => {
     let val = data.reduce((acc, el) => {
       let obj = {};
