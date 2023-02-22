@@ -1,9 +1,16 @@
-import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
+import { applyMiddleware, combineReducers, legacy_createStore, compose } from "redux";
 import thunk from "redux-thunk";
+import { adminReducer } from "./Admin/Admin.reducer";
+
 import {reducer as accessoriesReducer} from "./Accessories/reducer";
 
-const combineReducer = combineReducers({
-  // add your reducer here
-  accessoriesReducer,
+  const combineReducer = combineReducers({
+    // add your reducer here
+    accessories:accessoriesReducer,
+  admin:adminReducer,
+
+
 });
-export const store = legacy_createStore(combineReducer, applyMiddleware(thunk));
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+export const store = legacy_createStore(combineReducer,composeEnhancer(applyMiddleware(thunk)));
