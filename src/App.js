@@ -10,7 +10,7 @@ function App() {
   return (
     <Box>
       <Navbar />
-      <AdminNavbar/>
+      {/* <AdminNavbar/> */}
       {/* add your path in Routes/AllRoutes.jsx */}
       <AllRoutes />
       <Footer />
