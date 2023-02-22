@@ -13,7 +13,7 @@ function App() {
       {/* <AdminNavbar/> */}
       {/* add your path in Routes/AllRoutes.jsx */}
       <AllRoutes />
-      <Footer />
+      {/* <Footer /> */}
     </Box>
   );
 }

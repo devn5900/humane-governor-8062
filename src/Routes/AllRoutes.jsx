@@ -11,11 +11,20 @@ import AdminWomenPage from "../pages/Admin_pages/AdminWomenPage";
 
 import Index from "../pages/Index";
 
+import Login from "../pages/Authentication/Login"
+import Register from "../pages/Authentication/Register"
+
+
+
 const AllRoutes = () => {
   return (
     <Routes>
       {/* define your paths here  */}
       <Route path="/" element={<Index />} />
+
+      <Route path="/login" element={<Login/>}/>
+      <Route path="/register" element={<Register/>}/>
+
 
       <Route path="/accessories" element={<Accessories/>}></Route>
 
@@ -24,6 +33,7 @@ const AllRoutes = () => {
       <Route path="/admin-accessories" element={<AdminAccePage/>} />
       <Route path="/admin-users" element={<AdminUserPage/>} />
       <Route path="/admin-dashboard" element={<AdminDashboardPage/>} />
+
 
       <Route path="*" element={<h1>404</h1>} />
     </Routes>
