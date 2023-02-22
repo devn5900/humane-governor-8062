@@ -42,4 +42,11 @@ Don't modify
  <li>BrowserRouter added</li>
 </ul>
 
+# AllRoutes.jsx
+
+ <ul>
+ <li>Add your Routes</li>
+ <li>Link your pages</li>
+</ul>
+
 # logo and pre-loader is inside the images folder
