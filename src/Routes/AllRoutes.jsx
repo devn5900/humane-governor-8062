@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Accessories from "../pages/accessories/Accessories";
+import AllAccessoriesProducts from "../pages/accessories/AllAccessoriesProducts";
 
 import AdminAccePage from "../pages/Admin_pages/AdminAccePage";
 import AdminDashboardPage from "../pages/Admin_pages/AdminDashboardPage";
@@ -16,6 +17,7 @@ import Register from "../pages/Authentication/Register"
 
 
 
+
 const AllRoutes = () => {
   return (
     <Routes>
@@ -27,6 +29,7 @@ const AllRoutes = () => {
 
 
       <Route path="/accessories" element={<Accessories/>}></Route>
+      <Route path="/accessories/products" element={<AllAccessoriesProducts/>}></Route>
 
       <Route path="/admin-men" element={<AdminMenPage/>} />
       <Route path="/admin-women" element={<AdminWomenPage/>} />

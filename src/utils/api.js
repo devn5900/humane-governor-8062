@@ -9,3 +9,9 @@ export const searchSuggestions = async (searchText) => {
   );
   return res.data;
 };
+
+export const getAccessoriesData = () => {
+    const res = axios.get(`https://busy-jade-mussel-sock.cyclic.app/products?type=accessories`)
+    
+    return res;
+}
