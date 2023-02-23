@@ -4,7 +4,7 @@ const Accessories = () => {
     
 
   return (
-    <Box>
+    <Box overflow={'hidden'}>
         {/* Head Section */}
 
         {/* Carousel */}
