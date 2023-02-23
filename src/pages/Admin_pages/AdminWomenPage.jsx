@@ -1,8 +1,11 @@
+import { Box } from '@chakra-ui/layout'
 import React from 'react'
 
 const AdminWomenPage = () => {
   return (
-    <div>AdminWomenPage</div>
+    <Box  width="100%" >
+      <Box></Box>
+    </Box>
   )
 }
 
