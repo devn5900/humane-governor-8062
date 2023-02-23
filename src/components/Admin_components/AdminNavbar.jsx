@@ -34,7 +34,7 @@ import {
 
 
 const LinkItems= [
-  { name: 'Home', icon: FiHome },
+  { name: 'Home', icon: FiHome , path:"/admin-dashboard"},
   { name: 'Trending', icon: FiTrendingUp },
   { name: 'Explore', icon: FiCompass },
   { name: 'Favourites', icon: FiStar },
