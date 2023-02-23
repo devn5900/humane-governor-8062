@@ -1,24 +1,7 @@
 import { Box, Flex, Image, Text } from '@chakra-ui/react'
-import axios from 'axios'
-import React from 'react'
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import {accessLoading, getAccessoriesProducts} from "../../Redux/Accessories/action"
-
-
 
 const Accessories = () => {
-    const dispatch = useDispatch();
     
-    const getAccessoriesData = () => {
-        dispatch(accessLoading())
-        axios.get(`https://busy-jade-mussel-sock.cyclic.app/products?type=accessories`)
-        .then((res) => dispatch(getAccessoriesProducts(res.data)))
-    }
-
-    useEffect(() => {
-        getAccessoriesData()
-    },[])
 
   return (
     <Box>

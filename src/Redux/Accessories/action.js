@@ -19,4 +19,24 @@ const getAccessoriesProducts = (payload) => {
     }
 }
 
-export {accessLoading,accessError,getAccessoriesProducts}
+const backpackData = () => {
+    return {
+        type:types.BACKPACK_DATA,
+    }
+}
+
+const capsData = (payload) => {
+    return {
+        type:types.CAPS_DATA,
+        payload
+    }
+}
+
+const footwearData = (payload) => {
+    return {
+        type:types.FOOTWEAR_DATA,
+        payload
+    }
+}
+
+export {accessLoading,accessError,getAccessoriesProducts,backpackData,capsData,footwearData}
