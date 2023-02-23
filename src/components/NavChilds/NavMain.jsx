@@ -8,12 +8,8 @@ import {
   InputGroup,
   InputLeftElement,
   Link,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
+  Spinner,
   Text,
-  useDisclosure,
 } from "@chakra-ui/react";
 import React, { memo, useEffect, useState } from "react";
 import boogylogo from "../../images/boogylogo.png";
@@ -22,9 +18,12 @@ import { BsSearch } from "react-icons/bs";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import NavLinkChild from "./NavLinkChild";
 import { searchSuggestions } from "../../utils/api";
+import useThrottle from "../../hooks/useThrottle";
 const NavMain = () => {
   const [search, setSearch] = useState("");
   const [mapSearch, setMapSearch] = useState([]);
+  const query = useThrottle(search, 500);
+  const [load, setLoad] = useState(true);
   const navItem = [
     {
       title: "MEN",
@@ -203,39 +202,49 @@ const NavMain = () => {
       ],
     },
   ];
-
   const searchFunc = (e) => {
-    if (!e.target.value) {
-      setSearch(e.target.value);
-      setMapSearch([]);
-    } else {
-      setSearch(e.target.value);
+    let inp = e.target.value;
+    if (inp !== search) {
+      setSearch(inp);
     }
   };
 
   useEffect(() => {
-    if (search !== "") {
-      searchSuggestions(search).then((res) => {
-        const val = res?.reduce((acc, el) => {
-          let obj = {};
-          obj.title = el.name.split(" ").splice(0, 5).join(" ");
-          obj.id = el.id;
-          acc.push(obj);
-          return acc;
-        }, []);
-        setMapSearch(val);
-      });
-    } else {
+    if (search === "") {
       setMapSearch([]);
-      if (mapSearch.length == 0) {
-      }
+      setSearch("");
+    } else {
+      setLoad(true);
+      fetchSearch(query);
     }
 
     return () => {
       setMapSearch([]);
     };
-  }, [search]);
-  console.log(mapSearch);
+  }, [query]);
+
+  const fetchSearch = (query) => {
+    searchSuggestions(query)
+      .then((res) => {
+        const val = res?.reduce((acc, el) => {
+          let obj = {};
+          obj.title = el.name.split(" ").splice(0, 5).join(" ");
+          obj.id = el.id;
+          obj.image = el.image;
+          acc.push(obj);
+          return acc;
+        }, []);
+        if (query === "") {
+          setMapSearch([]);
+        } else {
+          setMapSearch(val);
+        }
+        setLoad(false);
+      })
+      .catch((e) => {
+        setLoad(false);
+      });
+  };
   return (
     <Flex alignItems={"center"} p={"0.5rem"} justifyContent={"space-around"}>
       <Flex gap="2rem" alignItems={"center"}>
@@ -268,7 +277,7 @@ const NavMain = () => {
               <InputLeftElement
                 pointerEvents="none"
                 color="blackAlpha.500"
-                children={<BsSearch />}
+                children={load ? <Spinner /> : <BsSearch />}
               />
               <Input
                 fontSize={"0.7rem"}
@@ -281,25 +290,74 @@ const NavMain = () => {
               />
             </InputGroup>
           </Box>
-          {mapSearch.length > 0 && (
+          {mapSearch.length == 0 && search !== "" && (
             <Box
               pos={"absolute"}
+              top={"2.7rem"}
               maxH={"20rem"}
+              w={"15rem"}
               textAlign={"center"}
-              overflow={"scroll"}
               border={"1px solid"}
-              bg={"gray.100"}
+              bg={"gray.200"}
               zIndex={1000}
               p={"0.5rem"}
               borderColor={" blackAlpha.200"}
             >
-              {mapSearch?.map((el) => {
-                return (
-                  <Text fontSize={"0.9rem"} key={Math.random() * 100 + 4}>
-                    {el.title}
-                  </Text>
-                );
-              })}
+              <Box color={"blackAlpha.600"}>No Item Found !</Box>
+            </Box>
+          )}
+          {mapSearch.length > 0 && (
+            <Box
+              pos={"absolute"}
+              top={"2.7rem"}
+              maxH={"20rem"}
+              w={"18rem"}
+              textAlign={"center"}
+              overflow={"scroll"}
+              border={"1px solid"}
+              bg={"gray.200"}
+              zIndex={1000}
+              css={{
+                "&::-webkit-scrollbar": {
+                  width: "4px",
+                },
+                "&::-webkit-scrollbar-track": {
+                  width: "6px",
+                },
+                "&::-webkit-scrollbar-thumb": {
+                  background: "#8ccef0",
+                  borderRadius: "24px",
+                },
+              }}
+              p={"0.5rem"}
+              borderColor={" blackAlpha.200"}
+            >
+              <Box>
+                {!load &&
+                  mapSearch?.map((el) => {
+                    return (
+                      <Flex
+                        alignItems={"center"}
+                        mt={"0.2rem"}
+                        bg={"blackAlpha.50"}
+                        _hover={{ bg: "#E3E9ED" }}
+                        cursor={"pointer"}
+                        borderRadius={"sm"}
+                        overflow={"hidden"}
+                        key={Math.random() * 100 + 4}
+                      >
+                        <Box w={"13%"}>
+                          <Image src={el.image} w={"fit-content"} />
+                        </Box>
+                        <Box ml={"0.2rem"}>
+                          <Text textAlign={"start"} fontSize={"0.9rem"}>
+                            {el.title.trim()}
+                          </Text>
+                        </Box>
+                      </Flex>
+                    );
+                  })}
+              </Box>
             </Box>
           )}
         </Box>
