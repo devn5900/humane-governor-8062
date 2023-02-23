@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom'
 import {
   IconButton,
   Avatar,
@@ -21,24 +22,27 @@ import {
   MenuList,
 } from '@chakra-ui/react';
 import {
-  FiHome,
-  FiTrendingUp,
-  FiCompass,
-  FiStar,
-  FiSettings,
   FiMenu,
   FiBell,
   FiChevronDown,
 } from 'react-icons/fi';
+import {AiFillHome} from 'react-icons/ai'
+import {BsFillBellFill} from 'react-icons/bs'
+import {HiFolderAdd} from 'react-icons/hi'
+import {ImMan,ImWoman} from 'react-icons/im';
+import {FaChild,FaUsers} from 'react-icons/fa'
+import {RiAccountPinCircleFill,RiLogoutCircleFill} from 'react-icons/ri'
 
 
 
 const LinkItems= [
-  { name: 'Home', icon: FiHome , path:"/admin-dashboard"},
-  { name: 'Trending', icon: FiTrendingUp },
-  { name: 'Explore', icon: FiCompass },
-  { name: 'Favourites', icon: FiStar },
-  { name: 'Settings', icon: FiSettings },
+  { name: 'Home', icon: AiFillHome, path:'/admin-dashboard'},
+  // { name: 'Add Product', icon: HiFolderAdd, path:'/add-products' },
+  { name: 'Men', icon: ImMan, path:'/admin-men' },
+  { name: 'Women', icon: ImWoman, path:'/admin-women' },
+  { name: 'Accessories', icon: FaChild, path:'/admin-accessories' },
+  { name: 'Users', icon: FaUsers, path:'/admin-users' },
+  { name: 'Logout', icon: RiLogoutCircleFill, path:'/' }
 ];
 
 export default function AdminNavbar({
@@ -46,10 +50,13 @@ export default function AdminNavbar({
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
+    <Box border={'0px solid black'} pos={'fixed'} top={0} right={0} left={0} zIndex={999}>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: 'none', md: 'block' }}
+        border={'0px solid '}
+        bg="gray.100"
+        
       />
       <Drawer
         autoFocus={false}
@@ -92,17 +99,18 @@ const SidebarContent = ({ onClose, ...rest }) => {
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
-          {link.name}
+        
+        <NavItem key={link.name} icon={link.icon} item={link.path}>
+          {link}
         </NavItem>
       ))}
     </Box>
   );
 };
 
-const NavItem = ({ icon, children, ...rest }) => {
+const NavItem = ({ icon, children, item ,...rest}) => {
   return (
-    <Link href="#" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+    <NavLink to={item} style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
       <Flex
         align="center"
         p="4"
@@ -125,9 +133,9 @@ const NavItem = ({ icon, children, ...rest }) => {
             as={icon}
           />
         )}
-        {children}
+        {children.name}
       </Flex>
-    </Link>
+    </NavLink>
   );
 };
 
