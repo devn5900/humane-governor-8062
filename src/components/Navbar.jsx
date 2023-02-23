@@ -6,7 +6,13 @@ import NavSections from "./NavChilds/NavSections";
 
 const Navbar = () => {
   return (
-    <Box fontFamily={"montserrat,sans-serif"}>
+    <Box
+      fontFamily={"montserrat,sans-serif"}
+      pos={"sticky"}
+      zIndex={100}
+      bg={"white"}
+      top={"0"}
+    >
       <Links />
       <NavMain />
       <Divider borderColor={"blackAlpha.500"} />
