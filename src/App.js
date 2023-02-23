@@ -9,7 +9,7 @@ import AdminNavbar from "./components/Admin_components/AdminNavbar";
 function App() {
   return (
     <Box>
-      {/* <Navbar /> */}
+      <Navbar />
       {/* <AdminNavbar/> */}
       {/* add your path in Routes/AllRoutes.jsx */}
       <AllRoutes />
