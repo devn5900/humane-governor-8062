@@ -363,7 +363,7 @@ const NavMain = () => {
         </Box>
 
         <Flex gap="1rem" alignItems={"center"}>
-          <Link to={"/login"}>Account</Link>
+          <Link as={ReachLink} to={"/register"}>Account</Link>
           <Link to={"/cart"}>
             <Box pos="relative">
               <Icon as={AiOutlineShoppingCart} fontSize={"1.7rem"} />
