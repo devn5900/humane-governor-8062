@@ -16,7 +16,7 @@ const NavSections = () => {
         <Link textDecor={"none"} to="#" as={ReachLink}>
           WOMEN
         </Link>
-        <Link textDecor={"none"} to="#" as={ReachLink}>
+        <Link textDecor={"none"} to="/accessories" as={ReachLink}>
           ACCESSORIES
         </Link>
       </Flex>

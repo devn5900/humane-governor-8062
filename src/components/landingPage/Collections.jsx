@@ -19,7 +19,7 @@ const Collections = ({ title, coll }) => {
       <Grid templateColumns="repeat(2, 1fr)" gap={2}>
         {coll?.map((el) => {
           return (
-            <GridItem>
+            <GridItem key={Math.random() * 100 + 8}>
               <Box>
                 <Image src={el.image} />
               </Box>
