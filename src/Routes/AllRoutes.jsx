@@ -15,7 +15,7 @@ import Index from "../pages/Index";
 import Login from "../pages/Authentication/Login"
 import Register from "../pages/Authentication/Register"
 import Signup from "../pages/Authentication/Signup"
-
+import Cart from "../pages/Cart/Cart"
 
 
 
@@ -29,6 +29,7 @@ const AllRoutes = () => {
       <Route path="/login" element={<Login/>}/>
       <Route path="/register" element={<Register/>}/>
       <Route path="/signup" element={<Signup/>}/>
+      <Route path="/cart" element={<Cart/>}/>
 
       <Route path="/accessories" element={<Accessories/>}></Route>
       <Route path="/accessories/products" element={<AllAccessoriesProducts/>}></Route>
