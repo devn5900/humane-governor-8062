@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate,Link} from 'react-router-dom'
 import {
   Box,
   Text,
@@ -16,9 +16,12 @@ import{
   ViewIcon
 }from '@chakra-ui/icons';
 
+import Loader from '../../components/Loader'
+
 const Login =  () => {
   const toast = useToast()
   const Navigate = useNavigate()
+  const[loading,setLoading]=useState(false)
   const[user,setUser]=useState('');
   const [password,setPassword]=useState('')
   // const [isLogged,setIsLogged]=useState(true)
@@ -73,63 +76,42 @@ const Login =  () => {
     if(isValidated())
 
     try{
+      setLoading(true)
       const res= await fetch(`http://localhost:8080/signup?email=${user}`)
-      
-      // ,{
-      //   'method': 'GET',
-      //   'headers':{
-      //     'Conten-Type':'application/json'
-      //   }
-      // }
 
-      const data = await res.json();
-      console.log("loginData:",data)
-
-      // const arr = data.filter((el)=> (el.email===user && el.password===password))
-      // console.log("arr:",arr)
-
-      // if(arr.length!==0)
-      // {
-      //   alert('success login')
-        
-      // }
-      // else{
-      //   alert('provied detail')
-      // }
-
-      if(data.length!==0)
+      if(res.ok)
       {
-        toast({
-          title: 'Login Successfull',
-          position: 'top',
-          status: 'success',
-          duration: 5000,
-          isClosable: true,
-        }) 
-        Navigate('/')
-
-        // try{
-        //   const patchData = await fetch(`http://localhost:8080/signupemail=${user}`,{
-        //     'method': 'PATCH',
-        //     'body':{
-        //       isLogged:true
-        //     },
-        //     'headers':{
-        //       'Content-Type':'application/json',
-        //       'Accept':'application/json'
-        //     }
-        //   })
-        //   const result = await patchData.json();
-        //   console.log("result:",result)
-        // }
-        // catch(error)
-        // {
-        //   console.log("patch error")
-        // }
-
+        const data = await res.json();
+        console.log("user",user)
+        console.log("loginData:",data)
+        
+        if(data.length===0 || !data[0]?.email)
+        {
+          toast({
+            title: 'Incorrect login details. Please try again.',
+            position: 'top',
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+          }) 
+        }
+        else{
+          const obj={...data[0],isLogged:true}
+          localStorage.setItem("LoggedIn-user",JSON.stringify(obj))
+          toast({
+            title: 'Login Successfull',
+            position: 'top',
+            status: 'success',
+            duration: 5000,
+            isClosable: true,
+          }) 
+          Navigate('/')
+          setLoading(false)
+        }
       }
       else{
-        // alert('provied detail')
+        // console.log('error')
+        setLoading(false)
         toast({
           title: 'Incorrect login details. Please try again.',
           position: 'top',
@@ -137,15 +119,29 @@ const Login =  () => {
           duration: 5000,
           isClosable: true,
         }) 
-
+        // setLoading(false)
       }
+
+      
     }
     catch(err)
     {
       console.log('error while fetching')
+      toast({
+        title: 'error while fetching',
+        position: 'top',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      }) 
     }
   }
   
+  if(loading)
+  {
+    <Loader/>
+  }
+
   return (
     <Box alignItems='baseline' w='100%' h='572' bgGradient='linear(to-b, white, orange.100, orange.100)' >
       <Box  w='76%' h='540' m='auto'  bg='white'>
@@ -169,6 +165,11 @@ const Login =  () => {
         <Box w='50%' m='auto' mt='12' >
           <Button w='100%' bg='#989898' color='white' p='30' fontSize='22' letterSpacing={1} onClick={handleSubmit}>LOGIN</Button>
         </Box>
+        <Center>
+              <Text size='md' colorScheme='teal' fontSize='sm' mt='2'>
+                Click here for <Link to='/signup'color='teal'>SignUP</Link>
+              </Text>
+            </Center>
       </Box>
     </Box>
   )

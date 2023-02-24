@@ -36,7 +36,7 @@ const Signup = () => {
   // const[mobile,setMobile]=useState('')
   const [show, setShow] = React.useState(false)
   const handleClick = () => setShow(!show)
-  let isLogged=true;
+  let isLogged=false;
 
   const mobile=JSON.parse(localStorage.getItem('Mobile'));
   console.log("mobile:",mobile)
@@ -93,10 +93,11 @@ const Signup = () => {
 
   async function Proceed (){
     
+    let items ={name,email,password,avatar,isLogged,cartItem};
     if(isValided())
 
-    var items ={name,email,password,avatar,isLogged,cartItem}
-    
+    console.log('item',items)
+    // https://busy-jade-mussel-sock.cyclic.app/signup
     try
     {
       const res= await fetch(`http://localhost:8080/signup`,{
@@ -140,14 +141,14 @@ const Signup = () => {
 
   return (
     <Box alignItems='baseline' w='100%' h='572' bgGradient='linear(to-b, white, orange.100, orange.100)'  >
-      <Box  w='76%' h='540' m='auto' p='10'  display='flex' gap='10'>
+      <Box  w='76%' h='542' m='auto' p='10'  display='flex' gap='10'>
         <Box  w='50%' h='auto' mt='-8' >
           <Center>
             <Image bg='transparent'  src='https://images.bewakoof.com/web/desktop-sign-up-banner--1623760676.png' alt='img' w='65%' h='470'/>
           </Center>
         </Box>
 
-        <Box  w='55%' h='530' m='auto' mt='-8' bg='white' >
+        <Box  w='55%' h='540' m='auto' mt='-8' bg='white' >
           <Box  w='80%' pl='24' justifyContent='left' display='grid' gridTemplateColumns='2' gap='2' color='#333'>
             <Text letterSpacing={0.5} fontSize='3xl' as='b' >Sign Up</Text>
             <Text letterSpacing={0.5} fontSize='lg' as='b' mb='5'>Hi new buddy, let's get you started with the bewakoofi!</Text>
@@ -193,7 +194,14 @@ const Signup = () => {
             {/* <Link to='/'> */}
               <Button w='100%' bg='#989898' color='white' p='30' fontSize='22' letterSpacing={1} onClick={Proceed}>PROCEED</Button>
             {/* </Link> */}
+            <Center>
+              <Text size='md' colorScheme='teal' fontSize='sm' mt='2'>
+                Click here for <Link to='/login'color='teal'>login</Link>
+              </Text>
+            </Center>
+
           </Box>
+          
         </Box>
       </Box>
       

@@ -10,7 +10,7 @@ import Register from "./pages/Authentication/Register"
 function App() {
   return (
     <Box>
-      <Navbar />
+      {/* <Navbar /> */}
       {/* <AdminNavbar/> */}
       {/* add your path in Routes/AllRoutes.jsx */}
       <AllRoutes />
