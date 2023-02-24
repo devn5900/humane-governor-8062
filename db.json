@@ -1,0 +1,86 @@
+{
+  "signup": [
+    {
+      "id": 1,
+      "name": "Devesh Mishra",
+      "avatar": "",
+      "password": "1234",
+      "email": "devn5900@gmail.com",
+      "isLogged": false,
+      "cartItem": []
+    },
+    {
+      "name": "Omi Khupse",
+      "email": "omikhupse@gmail.com",
+      "password": "Omi@1234",
+      "avatar": "",
+      "isLogged": false,
+      "cartItem": [],
+      "id": 2
+    },
+    {
+      "name": "omi",
+      "email": "omikhgfgy@gmail.com",
+      "password": "63431",
+      "avatar": "",
+      "isLogged": true,
+      "cartItem": [],
+      "id": 3
+    },
+    {
+      "name": "zoya",
+      "email": "zoya@gmail.com",
+      "password": "zoyz1234",
+      "avatar": "",
+      "isLogged": true,
+      "cartItem": [],
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "id": 6
+    },
+    {
+      "id": 7
+    },
+    {
+      "id": 8
+    },
+    {
+      "id": 9
+    },
+    {
+      "id": 10
+    },
+    {
+      "id": 11
+    },
+    {
+      "id": 12
+    },
+    {
+      "name": "pooja",
+      "email": "pooja@gmail.com",
+      "password": "pooja1234",
+      "avatar": "",
+      "isLogged": true,
+      "cartItem": [],
+      "id": 13
+    },
+    {
+      "id": 14
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
