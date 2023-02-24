@@ -23,7 +23,7 @@ const NavMain = () => {
   const [search, setSearch] = useState("");
   const [mapSearch, setMapSearch] = useState([]);
   const query = useThrottle(search, 500);
-  const [load, setLoad] = useState(true);
+  const [load, setLoad] = useState(false);
   const navItem = [
     {
       title: "MEN",
@@ -363,8 +363,10 @@ const NavMain = () => {
         </Box>
 
         <Flex gap="1rem" alignItems={"center"}>
-          <Link to={"/login"}>Account</Link>
-          <Link to={"/cart"}>
+          <Link as={ReachLink} to={"/register"}>
+            Account
+          </Link>
+          <Link as={ReachLink} to={"/cart"}>
             <Box pos="relative">
               <Icon as={AiOutlineShoppingCart} fontSize={"1.7rem"} />
               <Badge
@@ -379,7 +381,7 @@ const NavMain = () => {
               </Badge>
             </Box>
           </Link>
-          <Link to={"#"}>
+          <Link as={ReachLink} to={"#"}>
             <Image
               borderRadius="full"
               boxSize="2rem"
