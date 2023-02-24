@@ -21,7 +21,7 @@ const getAccessoriesProducts = (payload) => {
 
 const backpackData = () => {
     return {
-        type:types.BACKPACK_DATA,
+        type:types.BACKPACK_DATA
     }
 }
 
