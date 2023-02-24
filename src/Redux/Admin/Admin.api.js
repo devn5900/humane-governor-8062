@@ -2,13 +2,8 @@ import axios from "axios"
 
 // GET_APIS
 
-export const getMensDataAPI=async(page)=>{
-    let res= await axios.get(`https://busy-jade-mussel-sock.cyclic.app/products?type=Men`,{
-        params:{
-          _limit:15,
-          _page:page
-        }
-    })
+export const getMensDataAPI=async()=>{
+    let res= await axios.get(`https://busy-jade-mussel-sock.cyclic.app/products?type=Men`)
     return res.data;
 }
 
@@ -18,6 +13,24 @@ export const getWomensDataAPI=async()=>{
 }
 
 export const getAssecccoriesDataAPI=async()=>{
-    let res= await axios.get(`https://busy-jade-mussel-sock.cyclic.app/products?type=accessories`)
+    let res= await axios.get(`https://busy-jade-mussel-sock.cyclic.app/products?type=accessories&_limit=100`)
     return res.data;
 }
+
+// DELETE_APIS
+
+export const deleteMenDataAPI=async(id)=>{
+    let res= await axios.delete(`https://busy-jade-mussel-sock.cyclic.app/products/${id}`)
+    return res.data
+}
+
+// export const deleteWomenDataAPI=async(id)=>{
+//     let res= await axios.delete(`https://busy-jade-mussel-sock.cyclic.app/products?type=Women/${id}`)
+//     return res.data
+// }
+
+// export const deleteAccessDataAPI=async(id)=>{
+//     let res= await axios.delete(`https://busy-jade-mussel-sock.cyclic.app/products?type=accessories/${id}`)
+//     return res.data
+// }
+
