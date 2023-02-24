@@ -13,7 +13,6 @@ function App() {
   const toggleNav = location.pathname.includes("admin");
   return (
     <Box>
-
       {/* <Navbar /> */}
       {/* <AdminNavbar/> */}
 
@@ -21,7 +20,7 @@ function App() {
 
       {/* add your path in Routes/AllRoutes.jsx */}
       <AllRoutes />
-      <Footer />
+      {!toggleNav && <Footer />}
       {/* <Register/> */}
       {/* <Footer /> */}
     </Box>
