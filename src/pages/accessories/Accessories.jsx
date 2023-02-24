@@ -1,4 +1,5 @@
 import { Box, Flex, Image, Text } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
 
 const Accessories = () => {
     
@@ -8,7 +9,7 @@ const Accessories = () => {
         {/* Head Section */}
 
         {/* Carousel */}
-        <Flex gap={'15px'}>
+        <Link to='/accessories/products'><Flex gap={'15px'}>
             <Box>
                 <Image src='https://images.bewakoof.com/uploads/grid/app/mobile-cover-banner-1x1-1675408832.jpg'></Image>
             </Box>
@@ -18,10 +19,10 @@ const Accessories = () => {
             <Box>
                 <Image src='https://images.bewakoof.com/uploads/grid/app/3-1672894716.gif'></Image>
             </Box>
-        </Flex>
+        </Flex></Link>
 
         {/* Body Section - BestSellers */}
-        <Flex width={'80%'} marginLeft="10%" textAlign={'center'} marginTop={'3%'} gap="20px">
+        <Link to='/accessories/products'><Flex width={'80%'} marginLeft="10%" textAlign={'center'} marginTop={'3%'} gap="20px">
             <Box>
                 <Image src='https://images.bewakoof.com/uploads/grid/app/new-thumbnail-icon-bestseller-1672896374.gif' alt='product'></Image>
                 <Text>Bestsellers</Text>
@@ -58,10 +59,10 @@ const Accessories = () => {
                 <Image src='https://images.bewakoof.com/uploads/grid/app/new-thumbnail-icon-collab-1672896375.gif' alt='product'></Image>
                 <Text>Official Collaboration</Text>
             </Box>
-        </Flex>
+        </Flex></Link>
 
         {/* Body Section - Trending Categories */}
-        <Box marginTop={'3%'}>
+        <Link to='/accessories/products'><Box marginTop={'3%'}>
             <Text fontSize={'xl'} textAlign={'center'} fontWeight='semibold'>Trending Categories</Text>
             <Flex width={'80%'} marginLeft="10%" textAlign={'center'} gap="20px">
                 <Box>
@@ -83,26 +84,26 @@ const Accessories = () => {
                     <Image src='https://images.bewakoof.com/uploads/grid/app/category-box-caps-1672907483.png'></Image>
                 </Box>
             </Flex>
-        </Box>
+        </Box></Link>
 
         {/* Body Section - Too Hot to be missed */}
-        <Box marginTop={'3%'}>
+        <Link to='/accessories/products'><Box marginTop={'3%'}>
             <Text fontSize={'xl'} textAlign={'center'} fontWeight='semibold'>TOO HOT TO BE MISSED</Text>
             <Flex>
                 <Image src='https://images.bewakoof.com/uploads/grid/app/hot-deals-mid-banner-1672920440.jpg' alt='product'></Image>
                 <Image src='https://images.bewakoof.com/uploads/grid/app/new-mid-banner-2022-CustomiseMockTee-1668416637.jpg' alt='product'></Image>
             </Flex>
-        </Box>
+        </Box></Link>
 
         {/* Body Section - Best Sellers */}
-        <Box>
+       <Link to='/accessories/products'> <Box>
             <Flex>
                 Best Sellers.
             </Flex>
-        </Box>
+        </Box></Link>
 
         {/* Body Section - Best Of Bewakoof */}
-        <Box marginTop={'3%'}>
+        <Link to='/accessories/products'><Box marginTop={'3%'}>
         <Text fontSize={'xl'} textAlign={'center'} fontWeight='semibold'>BEST OF BEWAKOOF</Text>
             <Flex>
                 <Box>
@@ -115,10 +116,10 @@ const Accessories = () => {
                     <Image src='https://images.bewakoof.com/uploads/grid/app/revamped-banner-1x1-accessories-flats-03-1672407275.jpg' alt='bewakoof'></Image>
                 </Box>
             </Flex>
-        </Box>
+        </Box></Link>
 
         {/* Body Section - GANGS FAVOURITE */}
-        <Box marginTop={'3%'}>
+        <Link to='/accessories/products'><Box marginTop={'3%'}>
         <Text fontSize={'xl'} textAlign={'center'} fontWeight='semibold'>GANG'S FAVOURITE</Text>
             <Flex>
                 <Box>
@@ -128,7 +129,7 @@ const Accessories = () => {
                     <Image src='https://images.bewakoof.com/uploads/grid/app/zigzag-slider-1672920440.gif' alt='bewakoof'></Image>
                 </Box>
             </Flex>
-        </Box>
+        </Box></Link>
 
         {/* Footer */}
         <Box marginTop={'1%'}>
