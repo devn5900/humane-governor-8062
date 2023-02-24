@@ -1,8 +1,8 @@
 import AccessCard from './AccessCard';
-import { useEffect,ReactText } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAccessoriesData } from '../../utils/api'
-import {accessError, accessLoading, backpackData, getAccessoriesProducts} from "../../Redux/Accessories/action"
+import { accessRate, accessSort, getAccessoriesData } from '../../utils/api'
+import {accessError, accessLoading, getAccessoriesProducts} from "../../Redux/Accessories/action"
 import {
   IconButton,
   Box,
@@ -16,6 +16,8 @@ import {
   useDisclosure,
   Input,
   Button,
+  Stack,
+  Center,
 } from '@chakra-ui/react';
 import {
   FiHome,
@@ -26,6 +28,8 @@ import {
 } from 'react-icons/fi';
 import Loader from '../../components/Loader';
 import { useState } from 'react';
+import {accessSearch} from "../../utils/api";
+import { Radio, RadioGroup } from '@chakra-ui/react'
 
 const LinkItems = [
   { name: 'Home', icon: FiHome },
@@ -67,15 +71,43 @@ function Sidebar({ children }) {
 
 const SidebarContent = ({ onClose, ...rest }) => {
   const [query,setQuery] = useState("");
+  // const [sort,setSort] = useState("");
   const dispatch = useDispatch()
-  const data = useSelector((store) => store.accessories.data)
-  console.log(data)
+  // const data = useSelector((store) => store.accessories.data)
+  
 
-  const handleBackpackData = () => {
-    dispatch(accessLoading())
-    dispatch(backpackData())
-    dispatch(accessError())
+  const handleSearch = () => {
+    setTimeout(() => {
+      dispatch(accessLoading())
+      accessSearch(query)
+      .then((res) => dispatch(getAccessoriesProducts(res.data)))
+      .catch((e) => dispatch(accessError()))
+    }, 1500);
   }
+  // console.log(data)
+
+  const handleSort = (val) => {
+    dispatch(accessLoading())
+    accessSort(val)
+    .then((res) => dispatch(getAccessoriesProducts(res.data)))
+    .catch((e) => dispatch(accessError()))
+  }
+
+  const handleRating = (val) => {
+    dispatch(accessLoading())
+    accessRate(val)
+    .then((res) => dispatch(getAccessoriesProducts(res.data)))
+    .catch((e) => dispatch(accessError()))
+  }
+  
+
+  useEffect(() => {
+    handleSearch()
+    // handleSort()
+    // handleRating()
+  },[query])
+
+  
 
   return (
     <Box
@@ -87,7 +119,14 @@ const SidebarContent = ({ onClose, ...rest }) => {
       h="full"
       {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Input size={'md'} placeholder='Search' value={query} onChange={(e) => setQuery(e.currentTarget.value)}></Input>
+        <Input size={'md'} 
+          placeholder='Search Accessories' 
+          value={query} 
+          onChange={(e) => {
+            setQuery(e.target.value)
+            handleSearch()
+          }} >
+        </Input>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {/* {LinkItems.map((link) => (
@@ -95,46 +134,32 @@ const SidebarContent = ({ onClose, ...rest }) => {
           {link.name}
         </NavItem>
       ))} */}
-      <Button align="center"
-        bg={'transparent'}
-        onClick={handleBackpackData}
-        p="4"
-        mx="4"
-        borderRadius="xl"
-        role="group"
-        cursor="pointer"
-        _hover={{
-          bg: 'yellow.300',
-          color: 'black',
-        }}>
-          Backpacks
-        </Button>
-      <Button align="center"
-        bg={'transparent'}
-        p="4"
-        mx="4"
-        borderRadius="xl"
-        role="group"
-        cursor="pointer"
-        _hover={{
-          bg: 'yellow.300',
-          color: 'black',
-        }}>
-          Caps
-        </Button>
-        <Button align="center"
-        bg={'transparent'}
-        p="4"
-        mx="4"
-        borderRadius="xl"
-        role="group"
-        cursor="pointer"
-        _hover={{
-          bg: 'yellow.300',
-          color: 'black',
-        }}>
-          Footwear
-        </Button>
+      <Text mx={5} fontSize={'lg'} fontWeight={'semibold'}>Price</Text>
+      <RadioGroup>
+        <Stack spacing={5} direction='column' mx={4}>
+          <Radio onClick={() => {
+            // setSort("asc")
+            handleSort("asc")
+          }} colorScheme='green' value='1'>
+            Low - High
+          </Radio>
+          <Radio  onClick={() => {
+            // setSort("desc")
+            handleSort("desc")
+          }}
+           colorScheme='red' value='2'>
+            High - Low
+          </Radio>
+        </Stack>
+      </RadioGroup>
+      <br />
+      <Text mx={5} fontSize={'lg'} fontWeight={'semibold'}>Rating</Text>
+      <RadioGroup>
+        <Stack spacing={4} direction='row' mx={2}>
+          <Radio value='1' colorScheme='red' onClick={() => handleRating('desc')}>Highest</Radio>
+          <Radio value='2' colorScheme='green' onClick={() => handleRating('asc')}>Lowest</Radio>    
+        </Stack>
+    </RadioGroup>
     </Box>
   );
 };
@@ -200,21 +225,22 @@ const AllAccessoriesProducts = () => {
     const data = useSelector((store) => store.accessories.data);
     const loading = useSelector((store) => store.accessories.isLoading);
     const error = useSelector((store) => store.accessories.isError);
-    // console.log(data);
+    const [page,setPage] = useState(1);
+    console.log(data);
     
     const getData = () => {
         dispatch(accessLoading())
-        getAccessoriesData()
+        getAccessoriesData(page)
         .then((res) => dispatch(getAccessoriesProducts(res.data)))
         .catch((e) => dispatch(accessError()));
     }
     
     useEffect(() => {
         getData()
-    },[])
+    },[page])
     
 
-  return (
+  return <Box>
     <Flex>
       <Box >
         <Sidebar/>
@@ -223,11 +249,20 @@ const AllAccessoriesProducts = () => {
         {loading ? <Loader/> : error ? <h1>Something is wrong...Please refresh</h1> : data?.map((e) => {
             return <AccessCard key={e.id} {...e}/>
         })}
+        {/* hy */}
       </Box>
       
     </Flex>
-   
-  )
+
+     {/* Pagination */}
+
+    <Center my={5}>
+      <Button variant={'ghost'} isDisabled={page === 1} onClick={() => setPage(page - 1)}>Prev</Button>
+      <Button variant={'ghost'} isDisabled>{page}</Button>
+      <Button variant={'ghost'} onClick={() => setPage(page + 1)}>Next</Button>
+    </Center>
+
+  </Box>
 }
 
 export default AllAccessoriesProducts

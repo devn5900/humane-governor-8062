@@ -24,14 +24,6 @@ export const reducer = (state = initialState,action) => {
                 ...state,isLoading:false,isError:false,data:payload
             }
         }
-        case types.BACKPACK_DATA:{
-            return {
-                ...state,
-                isLoading:false,
-                isError:false,
-                data: state.data.filter((e) => e.type === "accessories")
-            }
-        }
         default:{
             return state
         }

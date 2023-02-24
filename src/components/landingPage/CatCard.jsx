@@ -19,7 +19,7 @@ const CatCard = ({ title, links }) => {
       <Grid templateColumns="repeat(6, 1fr)">
         {links?.map((el) => {
           return (
-            <GridItem>
+            <GridItem key={Math.random() * 100 + 7}>
               <Box textAlign={"center"}>
                 <Image src={el.image} />
               </Box>

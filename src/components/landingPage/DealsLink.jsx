@@ -50,7 +50,7 @@ const DealsLink = () => {
       <Flex gap={"1rem"}>
         {links?.map((el) => {
           return (
-            <Box textAlign={"center"}>
+            <Box textAlign={"center"} key={Math.random() * 100 + 6}>
               <Image src={el.image} />
               <Text fontWeight={"bold"} fontSize={"sm"}>
                 {el.title}

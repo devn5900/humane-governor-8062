@@ -10,8 +10,26 @@ export const searchSuggestions = async (searchText) => {
   return res.data;
 };
 
-export const getAccessoriesData = () => {
-    const res = axios.get(`https://busy-jade-mussel-sock.cyclic.app/products?type=accessories`)
+export const getAccessoriesData = (val) => {
+    const res = axios.get(`https://busy-jade-mussel-sock.cyclic.app/products?type=accessories&_limit=15&_page=${val}`)
     
     return res;
+}
+
+export const accessSearch = (val) => {
+  const res = axios.get(`https://busy-jade-mussel-sock.cyclic.app/products?type=accessories&_limit=15&q=${val}`)
+
+  return res;
+}
+
+export const accessSort = (val) => {
+  const res = axios.get(`https://busy-jade-mussel-sock.cyclic.app/products?type=accessories&_limit=15&_sort=price&_order=${val}`)
+
+  return res;
+}
+
+export const accessRate = (val) => {
+  const res = axios.get(`https://busy-jade-mussel-sock.cyclic.app/products?type=accessories&_limit=15&_sort=rating&_order=${val}`)
+
+  return res;
 }
