@@ -3,24 +3,22 @@ import { Table, TableContainer, Tbody, Th, Thead, Tr } from '@chakra-ui/table';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import AdminNavbar from '../../components/Admin_components/AdminNavbar';
-import Pagination from '../../components/Admin_components/Pagination';
+// import Pagination from '../../components/Admin_components/Pagination';
 import SingleCart from '../../components/Admin_components/SingleCart';
-import { getMenData } from '../../Redux/Admin/Admin.action';
+import { deleteMenData, getMenData } from '../../Redux/Admin/Admin.action';
 
 const AdminMenPage = () => {
   const dispatch=useDispatch();
   const menData=useSelector((state)=>state.admin.mens_Data);
-  const [currentPage, setCurrentPage] = useState(1);
   useEffect(()=>{
     dispatch(getMenData())
-  },[dispatch , currentPage])
-  
-  const handlePage = (val) => {
-    setCurrentPage((prev) => prev + val);
-  };
+  },[])
+
+  const handleDelete=(id)=>{
+    dispatch(deleteMenData(id))
+  }
 
   return (
-    // <div></div>
     <HStack  w={"100%"} gap={0}>
       <Box width="20%" >
       <AdminNavbar/>
@@ -44,7 +42,8 @@ const AdminMenPage = () => {
                 menData?.map((item)=>(
                   <SingleCart
                   key={item.id}
-                  {...item} 
+                  {...item}
+                  handleDelete={handleDelete} 
                   />
                 ))
               }
@@ -52,12 +51,6 @@ const AdminMenPage = () => {
           </Table>
         </TableContainer>
         <Box mt="10px" bg="#fff" textAlign={'center'} >
-          <Pagination
-          handlePage={handlePage}
-          setCurrentPage={setCurrentPage}
-          currentPage={currentPage}
-          // totalPages={totalPages}
-          />
         </Box>
       </Box>
     </HStack>

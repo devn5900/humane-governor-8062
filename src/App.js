@@ -13,7 +13,12 @@ function App() {
   const toggleNav = location.pathname.includes("admin");
   return (
     <Box>
+
+      {/* <Navbar /> */}
+      {/* <AdminNavbar/> */}
+
       {!toggleNav ? <Navbar /> : <AdminNavbar />}
+
       {/* add your path in Routes/AllRoutes.jsx */}
       <AllRoutes />
       <Footer />
