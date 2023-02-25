@@ -16,7 +16,7 @@ import Login from "../pages/Authentication/Login"
 import Register from "../pages/Authentication/Register"
 import Signup from "../pages/Authentication/Signup"
 import Cart from "../pages/Cart/Cart"
-
+import Payment from '../pages/Cart/Payment'
 
 
 
@@ -30,6 +30,7 @@ const AllRoutes = () => {
       <Route path="/register" element={<Register/>}/>
       <Route path="/signup" element={<Signup/>}/>
       <Route path="/cart" element={<Cart/>}/>
+      <Route path="/payment" element={<Payment/>}/>
 
       <Route path="/accessories" element={<Accessories/>}></Route>
       <Route path="/accessories/products" element={<AllAccessoriesProducts/>}></Route>
