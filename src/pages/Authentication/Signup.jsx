@@ -1,6 +1,4 @@
 import React,{useState} from 'react'
-// import {useHistory} from 'react-router-use-history';
-// import axios from 'axios'
 import {Link, useNavigate} from 'react-router-dom'
 import { 
     Box,
@@ -23,121 +21,66 @@ import{
   ViewOffIcon,
   ViewIcon
 }from '@chakra-ui/icons';
+import { regUser } from '../../utils/api';
 
 const Signup = () => {
   const toast = useToast()
   const Navigate = useNavigate()
-  const[name,setName]=useState('');
-  const[password,setPassword]=useState('')
-  const[email,setEmail]=useState('')
-  const[avatar,setAvatar]=useState('');
-  const[cartItem,setCartItem]=useState([])
-  // const History=useHistory()
-  // const[mobile,setMobile]=useState('')
+
+  const init={
+ 
+    "name": "",
+    "avatar": "",
+    "password": "",
+    "email": "",
+    "isLogged": false,
+    "cartItem": []
+  }
+  const [user,setUser]= useState(init);
+  
   const [show, setShow] = React.useState(false)
   const handleClick = () => setShow(!show)
-  let isLogged=false;
 
   const mobile=JSON.parse(localStorage.getItem('Mobile'));
-  console.log("mobile:",mobile)
-
-  const isValided = ()=>{
-    
-    
-    if (!name && !email && !password) 
-    {
-      toast({
-        title: 'All fields are required',
-        position: 'top',
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      }) 
-      isLogged=false;
-    }
-    else if (!name ) 
-    {
-      toast({
-        title: 'Name is required',
-        position: 'top',
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      }) 
-      isLogged=false;
-    }
-    else if (!email ) 
-    {
-      toast({
-        title: 'Email is required',
-        position: 'top',
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      }) 
-      isLogged=false;
-    }
-    else if (!password ) 
-    {
-      toast({
-        title: 'Password is required',
-        position: 'top',
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      }) 
-      isLogged=false;
-    }
-    return isLogged
+/////////////////////////////////////////////////////////////
+  const inputUser=(e)=>{
+      setUser({...user,[e.target.name]:e.target.value})
   }
+  
 
-  async function Proceed (){
-    
-    let items ={name,email,password,avatar,isLogged,cartItem};
-    if(isValided())
-
-    console.log('item',items)
-    // https://busy-jade-mussel-sock.cyclic.app/signup
-    try
-    {
-      const res= await fetch(`http://localhost:8080/signup`,{
-      method:"POST",
-      body:JSON.stringify(items),
-      headers:{
-        "Content-Type":"application/json",
-        "Accept":"application/json"
-      }
-      })
-      let data=await res.json();
-      console.log("data:",data)
-
-      localStorage.setItem("sign-user",JSON.stringify(data))
-      // History.push('/')
-      if(name!=='' || email!=='' || password!=='')
-      {
+  const postData=()=>{
+      if(user.name===""||user.email===""||user.password===""){
         toast({
-          title: 'Registration Successfull',
-          position: 'top',
-          status: 'success',
-          duration: 5000,
-          isClosable: true,
-        }) 
-        Navigate('/')
+                title: 'All fields are required',
+                position: 'top',
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+              }) 
+      }else{
+         regAPi(user);
       }
-      console.log(name,email,password)
-    }
-    catch(err)
-    {
-      toast({
-        title: 'Failed',
-        position: 'top',
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      }) 
-      console.log('error')
-    }
   }
+
+const regAPi=async(data)=>{
+ let res= await  regUser(data)
+if(res.status===500){
+
+  toast({
+    title: 'Signed Up Successfull',
+    position: 'top',
+    status: 'success',
+    duration: 5000,
+    isClosable: true,
+  }) 
+  Navigate('/login')
+}
+}
+
+
+
+ ///////////////////////////////////////////////////////// 
+ 
 
   return (
     <Box alignItems='baseline' w='100%' h='572' bgGradient='linear(to-b, white, orange.100, orange.100)'  >
@@ -154,7 +97,7 @@ const Signup = () => {
             <Text letterSpacing={0.5} fontSize='lg' as='b' mb='5'>Hi new buddy, let's get you started with the bewakoofi!</Text>
           </Box>
           <Box w='65%' m='auto' >
-            <Input variant='flushed' mb='5' letterSpacing={0.5} value={name}  onChange={(e)=>setName(e.target.value)} placeholder='Name' _placeholder={{ opacity: 20, color: 'grey',  fontSize:'16' }}/>
+            <Input type='text' name='name' variant='flushed' mb='5' letterSpacing={0.5}  onChange={inputUser} placeholder='Name' _placeholder={{ opacity: 20, color: 'grey',  fontSize:'16' }}/>
             <Box display='flex' gap='4'>
               <Popover>
                   <PopoverTrigger>
@@ -173,9 +116,10 @@ const Signup = () => {
               {/* Added field required alert msg */}          
             </Box>        
             
-            <Input variant='flushed' mb='4' letterSpacing={0.5} placeholder='Email' value={email}  onChange={(e)=>setEmail(e.target.value)} _placeholder={{ opacity: 20, color: 'grey',  fontSize:'16'  }}/>
+            <Input type='email' name='email' variant='flushed' mb='4' letterSpacing={0.5} placeholder='Email'   onChange={inputUser} _placeholder={{ opacity: 20, color: 'grey',  fontSize:'16'  }}/>
             <InputGroup size='md'>
-              <Input pr='4.5rem' type={show ? 'text' : 'password'} variant='flushed' mb='4' letterSpacing={0.5} value={password}  onChange={(e)=>setPassword(e.target.value)} placeholder='Password' _placeholder={{ opacity: 20, color: 'grey', fontSize:'16'  }} />
+              <Input pr='4.5rem' type={show ? 'text' : 'password'} 
+              name="password"variant='flushed' mb='4' letterSpacing={0.5}   onChange={inputUser} placeholder='Password' _placeholder={{ opacity: 20, color: 'grey', fontSize:'16'  }} />
             <InputRightElement width='4.5rem'>
               <Box h='1.8rem' size='md' onClick={handleClick}>
                 {show ? <ViewOffIcon/> : <ViewIcon/>}
@@ -192,7 +136,7 @@ const Signup = () => {
           {/* </Box> */}
           <Box w='65%' m='auto' mt='8' >
             {/* <Link to='/'> */}
-              <Button w='100%' bg='#989898' color='white' p='30' fontSize='22' letterSpacing={1} onClick={Proceed}>PROCEED</Button>
+              <Button w='100%' bg='#989898' color='white' p='30' fontSize='22' letterSpacing={1} onClick={postData} >PROCEED</Button>
             {/* </Link> */}
             <Center>
               <Text size='md' colorScheme='teal' fontSize='sm' mt='2'>

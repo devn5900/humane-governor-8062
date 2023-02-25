@@ -12,11 +12,15 @@ import AdminWomenPage from "../pages/Admin_pages/AdminWomenPage";
 
 import Index from "../pages/Index";
 
+
+
+
 import ProductDetails from "../pages/SignleProduct/ProductDetails";
 import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
 import Signup from "../pages/Authentication/Signup";
 import Cart from "../pages/Cart/Cart";
+import Payment from '../pages/Cart/Payment'
 
 const AllRoutes = () => {
   return (
@@ -25,10 +29,21 @@ const AllRoutes = () => {
       <Route path="/" element={<Index />} />
       <Route path="/product/:id/details" element={<ProductDetails />} />
 
+      
+
+      
+
+      <Route path="/admin-men" element={<AdminMenPage/>} />
+      <Route path="/admin-women" element={<AdminWomenPage/>} />
+      <Route path="/admin-accessories" element={<AdminAccePage/>} />
+      <Route path="/admin-users" element={<AdminUserPage/>} />
+      <Route path="/admin-dashboard" element={<AdminDashboardPage/>} />
+
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/cart" element={<Cart />} />
+       <Route path="/payment" element={<Payment/>}/>
       <Route path="/accessories" element={<Accessories />}></Route>
       <Route
         path="/accessories/products"

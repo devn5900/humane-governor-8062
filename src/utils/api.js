@@ -40,7 +40,33 @@ export const accessRate = (val) => {
   );
 
   return res;
-};
+}
+
+
+
+
+export const regUser =async(data)=>{
+
+  let res= await fetch(`https://busy-jade-mussel-sock.cyclic.app/signup`,{
+   
+  method:'POST',
+  headers:{
+    'Content-Type':'application/json'
+  },
+  body:JSON.stringify(data)
+  });
+
+  return res;
+
+}
+
+
+
+
+export const loginUser=async(email)=>{
+    let res= await axios.get(`https://busy-jade-mussel-sock.cyclic.app/signup?email=${email}`);
+    return res.data;
+}
 
 export const getSingleProduct = async (id) => {
   const res = axios.get(

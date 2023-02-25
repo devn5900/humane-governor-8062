@@ -17,131 +17,154 @@ import{
 }from '@chakra-ui/icons';
 
 import Loader from '../../components/Loader'
+import { loginUser } from '../../utils/api';
 
 const Login =  () => {
   const toast = useToast()
   const Navigate = useNavigate()
-  const[loading,setLoading]=useState(false)
-  const[user,setUser]=useState('');
+  const[user,setUser]=useState("");
   const [password,setPassword]=useState('')
   // const [isLogged,setIsLogged]=useState(true)
   const [show, setShow] = React.useState(false)
   const handleClick = () => setShow(!show)
+  const [islog,setisLog]=useState( JSON.parse(localStorage.getItem('loggedInUser')))
   // let isLogged=true;
-  const isValidated = ()=> {
+  // const isValidated = ()=> {
     
-    let isLogged=true
+  //   let isLogged=true
     
-    if (!user && !password) 
-    {
-      toast({
-        title: 'All fields are required',
-        position: 'top',
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      }) 
-      // setIsLogged(false);
-      isLogged=false
-    }
-    else if (!user ) 
-    {
-      toast({
-        title: 'Username is required',
-        position: 'top',
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      }) 
-      // setIsLogged(false);
-      isLogged=false
-    }
-    else if (!password ) 
-    {
-      toast({
-        title: 'Password is required',
-        position: 'top',
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      }) 
-      // setIsLogged(false);
-      isLogged=false
-    }
+  //   if (!user && !password) 
+  //   {
+  //     toast({
+  //       title: 'All fields are required',
+  //       position: 'top',
+  //       status: 'error',
+  //       duration: 5000,
+  //       isClosable: true,
+  //     }) 
+  //     // setIsLogged(false);
+  //     isLogged=false
+  //   }
+  //   else if (!user ) 
+  //   {
+  //     toast({
+  //       title: 'Username is required',
+  //       position: 'top',
+  //       status: 'error',
+  //       duration: 5000,
+  //       isClosable: true,
+  //     }) 
+  //     // setIsLogged(false);
+  //     isLogged=false
+  //   }
+  //   else if (!password ) 
+  //   {
+  //     toast({
+  //       title: 'Password is required',
+  //       position: 'top',
+  //       status: 'error',
+  //       duration: 5000,
+  //       isClosable: true,
+  //     }) 
+  //     // setIsLogged(false);
+  //     isLogged=false
+  //   }
 
-    return isLogged
-  }
+  //   return isLogged
+  // }
 
-  const handleSubmit = async () => {
-    if(isValidated())
+  // const handleSubmit = async () => {
+  //   if(isValidated())
 
-    try{
-      setLoading(true)
-      const res= await fetch(`http://localhost:8080/signup?email=${user}`)
+  //   try{
+      
+  //     const res= await fetch(`https://busy-jade-mussel-sock.cyclic.app/signup?email=${user}`)
 
-      if(res.ok)
-      {
-        const data = await res.json();
-        console.log("user",user)
-        console.log("loginData:",data)
+  //     if(res.ok)
+  //     {
+  //       const data = await res.json();
+  //       console.log("user",user)
+  //       console.log("loginData:",data)
         
-        if(data.length===0 || !data[0]?.email)
-        {
-          toast({
-            title: 'Incorrect login details. Please try again.',
-            position: 'top',
-            status: 'error',
-            duration: 5000,
-            isClosable: true,
-          }) 
-        }
-        else{
-          const obj={...data[0],isLogged:true}
-          localStorage.setItem("LoggedIn-user",JSON.stringify(obj))
-          toast({
-            title: 'Login Successfull',
-            position: 'top',
-            status: 'success',
-            duration: 5000,
-            isClosable: true,
-          }) 
-          Navigate('/')
-          setLoading(false)
-        }
-      }
-      else{
-        // console.log('error')
-        setLoading(false)
-        toast({
-          title: 'Incorrect login details. Please try again.',
-          position: 'top',
-          status: 'error',
-          duration: 5000,
-          isClosable: true,
-        }) 
-        // setLoading(false)
-      }
+  //       if(data.length===0 || !data[0]?.email)
+  //       {
+  //         toast({
+  //           title: 'Incorrect login details. Please try again.',
+  //           position: 'top',
+  //           status: 'error',
+  //           duration: 5000,
+  //           isClosable: true,
+  //         }) 
+  //       }
+  //       else{
+  //         const obj={...data[0],isLogged:true}
+  //         localStorage.setItem("LoggedIn-user",JSON.stringify(obj))
+  //         toast({
+  //           title: 'Login Successfull',
+  //           position: 'top',
+  //           status: 'success',
+  //           duration: 5000,
+  //           isClosable: true,
+  //         }) 
+  //         Navigate('/')
+          
+  //       }
+  //     }
+  //     else{
+  //       // console.log('error')
+        
+  //       toast({
+  //         title: 'Incorrect login details. Please try again.',
+  //         position: 'top',
+  //         status: 'error',
+  //         duration: 5000,
+  //         isClosable: true,
+  //       }) 
+        
+  //     }
 
       
-    }
-    catch(err)
-    {
-      console.log('error while fetching')
-      toast({
-        title: 'error while fetching',
-        position: 'top',
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      }) 
-    }
+  //   }
+  //   catch(err)
+  //   {
+  //     console.log('error while fetching')
+  //     toast({
+  //       title: 'Error while fetching',
+  //       position: 'top',
+  //       status: 'error',
+  //       duration: 5000,
+  //       isClosable: true,
+  //     }) 
+  //   }
+  // }
+  // const handleSubmit = async () => {
+ 
+  if(islog?.isLogged){
+      Navigate('/');
   }
-  
-  if(loading)
-  {
-    <Loader/>
+  const handleSubmit =()=>{
+        if(user===""||password===""){
+          toast({
+                      title: 'Incorrect login details. Please try again.',
+                      position: 'top',
+                      status: 'error',
+                      duration: 5000,
+                      isClosable: true,
+                    })  
+        }else{
+            authLogin();
+        }
   }
-
+const authLogin=()=>{
+      loginUser(user).then((res)=>{
+        console.log(res);
+        res={...res[0],isLogged:true};
+        localStorage.setItem('loggedInUser',JSON.stringify(res));
+        Navigate('/')
+      })
+      setUser("");
+      setPassword("");
+}
   return (
     <Box alignItems='baseline' w='100%' h='572' bgGradient='linear(to-b, white, orange.100, orange.100)' >
       <Box  w='76%' h='540' m='auto'  bg='white'>
