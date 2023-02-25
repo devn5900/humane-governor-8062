@@ -34,11 +34,7 @@ const AllRoutes = () => {
         path="/accessories/products"
         element={<AllAccessoriesProducts />}
       ></Route>
-      <Route path="/admin-men" element={<AdminMenPage />} />
-      <Route path="/admin-women" element={<AdminWomenPage />} />
-      <Route path="/admin-accessories" element={<AdminAccePage />} />
-      <Route path="/admin-users" element={<AdminUserPage />} />
-      <Route path="/admin-dashboard" element={<AdminDashboardPage />} />
+
       <Route path="/admin-men" element={<AdminMenPage />} />
       <Route path="/admin-women" element={<AdminWomenPage />} />
       <Route path="/admin-accessories" element={<AdminAccePage />} />
