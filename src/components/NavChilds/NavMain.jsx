@@ -372,11 +372,10 @@ const NavMain = () => {
         </Box>
 
         <Flex gap="1rem" alignItems={"center"}>
-          <Link as={ReachLink} to={"/register"}>
-            Account
-          </Link>
 
-          <Link to={"/cart"}>
+          <Link as={ReachLink} to={"/register"}>Account</Link>
+          <Link as={ReachLink} to={"/cart"}>
+         
             <Box pos="relative">
               <Icon as={AiOutlineShoppingCart} fontSize={"1.7rem"} />
               <Badge
