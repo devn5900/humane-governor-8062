@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, legacy_createStore, compose } from "redux";
 import thunk from "redux-thunk";
 import { adminReducer } from "./Admin/Admin.reducer";
+import { reducer as MensReducer } from './mens/mens.reducer';
 
 import {reducer as accessoriesReducer} from "./Accessories/reducer";
 
@@ -8,6 +9,7 @@ import {reducer as accessoriesReducer} from "./Accessories/reducer";
     // add your reducer here
     accessories:accessoriesReducer,
   admin:adminReducer,
+  MensReducer,
 
 
 });
