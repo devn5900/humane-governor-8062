@@ -24,14 +24,7 @@ const AllRoutes = () => {
       {/* define your paths here  */}
       <Route path="/" element={<Index />} />
       <Route path="/product/:id/details" element={<ProductDetails />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/accessories" element={<Accessories />}></Route>
-      <Route
-        path="/accessories/products"
-        element={<AllAccessoriesProducts />}
-      ></Route>
+
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/signup" element={<Signup />} />
