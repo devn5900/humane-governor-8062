@@ -140,7 +140,7 @@ const Login =  () => {
   // const handleSubmit = async () => {
  
   if(islog?.isLogged){
-      Navigate('/');
+      // Navigate('/');
   }
   const handleSubmit =()=>{
         if(user===""||password===""){
@@ -151,7 +151,8 @@ const Login =  () => {
                       duration: 5000,
                       isClosable: true,
                     })  
-        }else{
+        }
+        else{
             authLogin();
         }
   }
@@ -160,10 +161,30 @@ const authLogin=()=>{
         console.log(res);
         res={...res[0],isLogged:true};
         localStorage.setItem('loggedInUser',JSON.stringify(res));
+
+        if(res[0].email !== user)
+        {
+          toast({
+            title: 'Incorrect login details. Please try again.',
+            position: 'top',
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+          }) 
+        }
+
         Navigate('/')
       })
       setUser("");
       setPassword("");
+
+      toast({
+        title: 'Login Successfull',
+        position: 'top',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+      }) 
 }
   return (
     <Box alignItems='baseline' w='100%' h='572' bgGradient='linear(to-b, white, orange.100, orange.100)' >

@@ -11,12 +11,20 @@ import {
 import boogylogo from '../../images/boogylogo.png'
 
 const EmptyCart = () => {
+
+    let loginuser = JSON.parse(localStorage.getItem('loggedInUser'))
+    console.log("loginuser:",loginuser.name)
+
   return (
     <Box>
-        <Box p='2'>
+        <Box display='flex' p='2'  justifyContent='space-between' >
           <Link to="/">
             <Image src={boogylogo} alt='logo' w={"7rem"} ml={40}/>
           </Link>
+          <Box mr={40}>
+            <Text fontSize={'12'}>Signed In as</Text>
+            <Text fontSize={'14'} as='b'>{loginuser.name}</Text>
+          </Box>
         </Box>
 
         <Divider borderColor='grey'/>

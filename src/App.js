@@ -17,7 +17,7 @@ function App() {
       {/* <Navbar /> */}
       {/* <AdminNavbar/> */}
 
-      {!toggleNav ? <Navbar /> : <AdminNavbar />}
+      {/* {!toggleNav ? <Navbar /> : <AdminNavbar />} */}
 
       {/* add your path in Routes/AllRoutes.jsx */}
       <AllRoutes />
