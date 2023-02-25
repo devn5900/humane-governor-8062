@@ -174,3 +174,11 @@ Don't modify
         }
 
     Store only product id in CartItem not all data
+
+# Single Products Page UI
+
+##
+
+    <Link to={`/product/${id}/details`} > Your Button </Link>
+
+    for Ex. http://localhost:3000/product/1/details
