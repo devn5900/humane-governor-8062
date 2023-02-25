@@ -31,6 +31,7 @@ import { useState } from 'react';
 import {accessSearch} from "../../utils/api";
 import { Radio, RadioGroup } from '@chakra-ui/react'
 
+
 const LinkItems = [
   { name: 'Home', icon: FiHome },
   { name: 'Trending', icon: FiTrendingUp },
@@ -261,7 +262,7 @@ const AllAccessoriesProducts = () => {
       <Button variant={'ghost'} isDisabled>{page}</Button>
       <Button variant={'ghost'} onClick={() => setPage(page + 1)}>Next</Button>
     </Center>
-
+    
   </Box>
 }
 

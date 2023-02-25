@@ -162,6 +162,8 @@ const authLogin=()=>{
         localStorage.setItem('loggedInUser',JSON.stringify(res));
         Navigate('/')
       })
+      setUser("");
+      setPassword("");
 }
   return (
     <Box alignItems='baseline' w='100%' h='572' bgGradient='linear(to-b, white, orange.100, orange.100)' >

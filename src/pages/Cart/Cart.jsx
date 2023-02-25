@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from 'react'
 import EmptyCart from './EmptyCart'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import boogylogo from '../../images/boogylogo.png'
 import { 
     Box,
@@ -13,7 +13,10 @@ import {
 
 
 const Cart =  () => {
-    const [data,setData]= useState( [])
+    const [data,setData]= useState( []);
+  const Navigate = useNavigate()
+
+    const [islog,setisLog]=useState( JSON.parse(localStorage.getItem('loggedInUser')))
     // const getData = async ()=>{
     //     try
     //     {
@@ -27,7 +30,9 @@ const Cart =  () => {
     //         console.log('Fetching error',err)
     //     }
     // }
-   
+    if(!islog?.isLogged){
+        Navigate('/login');
+    }
     useEffect(()=>{
        const us=JSON.parse(localStorage.getItem('loggedInUser'));
        setData(us.cartItem)
@@ -93,6 +98,7 @@ const Cart =  () => {
                         <Box 
                         key={el.id} 
                         border="1px solid #d8d4d4" p='2' mb='5' borderRadius={5} >
+               
 
                             <Box  display='flex'  justifyContent='space-around' mb='5'>
                                 <Box  w='100%' letterSpacing={0.8}>
