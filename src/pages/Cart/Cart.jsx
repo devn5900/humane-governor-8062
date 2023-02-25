@@ -17,19 +17,10 @@ const Cart =  () => {
   const Navigate = useNavigate()
 
     const [islog,setisLog]=useState( JSON.parse(localStorage.getItem('loggedInUser')))
-    // const getData = async ()=>{
-    //     try
-    //     {
-    //         const res = await fetch(`http://localhost:8080/cart`)
-    //         const data = await res.json();
-    //         console.log('data:',data)
-    //         localStorage.setItem('cartData',JSON.stringify(data))
-    //     }
-    //     catch(err)
-    //     {
-    //         console.log('Fetching error',err)
-    //     }
-    // }
+
+    let loginuser = JSON.parse(localStorage.getItem('loggedInUser'))
+    console.log("loginuser:",loginuser.name)
+   
     if(!islog?.isLogged){
         Navigate('/login');
     }
@@ -39,8 +30,6 @@ const Cart =  () => {
     },[])
 
     
-
-   
     let total=0;
     let discount=0;
     let subtotal=0;
@@ -49,7 +38,8 @@ const Cart =  () => {
         
         data?.forEach((el)=>{
             total+=el.price;
-            discount=Math.floor(el.price/8)
+            let x=Math.floor(el.price/8)
+            discount += x
             subtotal=total-discount
             console.log("total:",total)
         })
@@ -60,18 +50,19 @@ const Cart =  () => {
         return <EmptyCart/>
     }
 
-    
-    
   return (
     <Box >
-        <Box p='2'>
+        <Box display='flex' p='2'  justifyContent='space-between' >
           <Link to="/">
             <Image src={boogylogo} alt='logo' w={"7rem"} ml={40}/>
           </Link>
-          <Divider borderColor='grey' mt='2'/>
+          <Box mr={40}>
+            <Text fontSize={'12'}>Signed In as</Text>
+            <Text fontSize={'14'} as='b'>{loginuser.name}</Text>
+          </Box>
         </Box>
 
-        
+        <Divider borderColor='grey' mt='2'/>
 
         <Box 
         display='flex'gap='2%' w='75%' m='auto' mt='8' 
