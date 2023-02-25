@@ -19,6 +19,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import NavLinkChild from "./NavLinkChild";
 import { searchSuggestions } from "../../utils/api";
 import useThrottle from "../../hooks/useThrottle";
+import { RiAdminLine } from "react-icons/ri";
 const NavMain = () => {
   const [search, setSearch] = useState("");
   const [mapSearch, setMapSearch] = useState([]);
@@ -372,10 +373,15 @@ const NavMain = () => {
         </Box>
 
         <Flex gap="1rem" alignItems={"center"}>
-
-          <Link as={ReachLink} to={"/register"}>Account</Link>
+          <Link as={ReachLink} to={"/register"}>
+            Account
+          </Link>
+          <Link as={ReachLink} to={"/admin-dashboard"}>
+            <Box pos="relative">
+              <Icon as={RiAdminLine} fontSize={"1.7rem"} />
+            </Box>
+          </Link>
           <Link as={ReachLink} to={"/cart"}>
-         
             <Box pos="relative">
               <Icon as={AiOutlineShoppingCart} fontSize={"1.7rem"} />
               <Badge
