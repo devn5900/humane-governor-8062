@@ -78,7 +78,7 @@ const Cart = async () => {
                     {/* map data */}
 
                     {/* {data.map((el,id)=>( */}
-                        // <Box key={el.id} border="1px solid grey" p='2' mb='5'>
+                         <Box  border="1px solid grey" p='2' mb='5'>
 
                             <Box border="1px solid blue" diplay='flex' gap='20'>
                                 <Box border="1px solid yellow">
