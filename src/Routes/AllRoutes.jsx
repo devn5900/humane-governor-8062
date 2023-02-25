@@ -12,33 +12,32 @@ import AdminWomenPage from "../pages/Admin_pages/AdminWomenPage";
 
 import Index from "../pages/Index";
 
-import Login from "../pages/Authentication/Login"
-import Register from "../pages/Authentication/Register"
-import Signup from "../pages/Authentication/Signup"
-
-
-
-
+import Login from "../pages/Authentication/Login";
+import Register from "../pages/Authentication/Register";
+import Signup from "../pages/Authentication/Signup";
+import ProductDetails from "../pages/SignleProduct/ProductDetails";
 
 const AllRoutes = () => {
   return (
     <Routes>
       {/* define your paths here  */}
       <Route path="/" element={<Index />} />
+      <Route path="/product/:id/details" element={<ProductDetails />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/signup" element={<Signup />} />
 
-      <Route path="/login" element={<Login/>}/>
-      <Route path="/register" element={<Register/>}/>
-      <Route path="/signup" element={<Signup/>}/>
+      <Route path="/accessories" element={<Accessories />}></Route>
+      <Route
+        path="/accessories/products"
+        element={<AllAccessoriesProducts />}
+      ></Route>
 
-      <Route path="/accessories" element={<Accessories/>}></Route>
-      <Route path="/accessories/products" element={<AllAccessoriesProducts/>}></Route>
-
-      <Route path="/admin-men" element={<AdminMenPage/>} />
-      <Route path="/admin-women" element={<AdminWomenPage/>} />
-      <Route path="/admin-accessories" element={<AdminAccePage/>} />
-      <Route path="/admin-users" element={<AdminUserPage/>} />
-      <Route path="/admin-dashboard" element={<AdminDashboardPage/>} />
-
+      <Route path="/admin-men" element={<AdminMenPage />} />
+      <Route path="/admin-women" element={<AdminWomenPage />} />
+      <Route path="/admin-accessories" element={<AdminAccePage />} />
+      <Route path="/admin-users" element={<AdminUserPage />} />
+      <Route path="/admin-dashboard" element={<AdminDashboardPage />} />
 
       <Route path="*" element={<h1>404</h1>} />
     </Routes>
