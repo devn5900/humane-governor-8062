@@ -23,6 +23,11 @@ export const getAssecccoriesDataAPI = async () => {
   return res.data;
 };
 
+export const getusersDataApi=async()=>{
+  let res= await axios.get(`https://busy-jade-mussel-sock.cyclic.app/signup`)
+  return res.data
+}
+
 // DELETE_APIS
 
 export const deleteMenDataAPI = async (id) => {
@@ -31,6 +36,11 @@ export const deleteMenDataAPI = async (id) => {
   );
   return res.data;
 };
+
+export const deleteUserDataAPI=async(id)=>{
+  let res= await axios.delete(`https://busy-jade-mussel-sock.cyclic.app/signup/${id}`)
+  return res.data
+}
 
 // UPDATE_API
 
@@ -83,3 +93,4 @@ export const postAccenDataAPI=async(accProduct)=>{
   })
   return res.data
 }
+
