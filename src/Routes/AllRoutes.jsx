@@ -23,6 +23,7 @@ import Menspage from "../pages/Menspage/Menspage";
 
 import Thankyou from '../pages/Cart/Thankyou';
 import AdminAddProductsPage from "../pages/Admin_pages/AdminAddProductPage";
+import Womenspage from "../pages/Womenspage/Womenspage";
 
 const AllRoutes = () => {
   return (
@@ -46,7 +47,7 @@ const AllRoutes = () => {
 
       <Route path="/mens" element={<Menspage/>}/>
       <Route path="/thankyou" element={<Thankyou/>}/>
-      
+      <Route path="/womens" element={<Womenspage/>}/>
       <Route path="/accessories" element={<Accessories />}></Route>
       <Route
         path="/accessories/products"

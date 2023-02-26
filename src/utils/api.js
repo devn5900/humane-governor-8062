@@ -102,3 +102,32 @@ export const getSingleMensProduct = async (id) => {
   );
   return res;
 };
+
+
+
+// Womens section
+
+
+export const womensSort = (val) => {
+  const res = axios.get(
+    `https://busy-jade-mussel-sock.cyclic.app/products?type=Women&_limit=15&_sort=price&_order=${val}`
+  );
+
+  return res;
+};
+
+export const womensRate = (val) => {
+  const res = axios.get(
+    `https://busy-jade-mussel-sock.cyclic.app/products?type=Women&_limit=15&_sort=rating&_order=${val}`
+  );
+
+  return res;
+};
+
+
+export const getSingleWomensProduct = async (id) => {
+  const res = axios.get(
+    `https://busy-jade-mussel-sock.cyclic.app/products/${id}`
+  );
+  return res;
+};
