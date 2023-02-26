@@ -7,6 +7,10 @@ import { BsRecord2,BsTelephoneInbound,BsThreeDotsVertical } from 'react-icons/bs
 const UserCard = ({id , name , avatar , email, isLogged , cartItem}) => {
   console.log("cartItem" , cartItem)
   return (
+    <>
+    {
+      name=="admin"?"" :
+    
     <Card maxW='4xl' paddingX={3}  mt={30}boxShadow='md' w="100%" 
     
     >
@@ -58,6 +62,8 @@ const UserCard = ({id , name , avatar , email, isLogged , cartItem}) => {
       </Button>
     </CardFooter>
   </Card>
+}
+  </>
   )
 }
 
