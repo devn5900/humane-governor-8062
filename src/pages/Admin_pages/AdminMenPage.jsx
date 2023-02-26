@@ -56,7 +56,11 @@ const AdminMenPage = () => {
       },1000)
     })
   }
-  const handleOpen=(id)=>{
+  const handleOpen=(id,name , discount , price)=>{
+    console.log(id,name,discount,price)
+    setTitle(name)
+    setDiscount(discount)
+    setPrice(price)
     setId(id);
     onOpen();
   }
