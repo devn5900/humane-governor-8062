@@ -74,3 +74,31 @@ export const getSingleProduct = async (id) => {
   );
   return res;
 };
+
+
+// Mens product data fetching
+
+
+export const mensSort = (val) => {
+  const res = axios.get(
+    `https://busy-jade-mussel-sock.cyclic.app/products?type=Men&_limit=15&_sort=price&_order=${val}`
+  );
+
+  return res;
+};
+
+export const mensRate = (val) => {
+  const res = axios.get(
+    `https://busy-jade-mussel-sock.cyclic.app/products?type=Men&_limit=15&_sort=rating&_order=${val}`
+  );
+
+  return res;
+};
+
+
+export const getSingleMensProduct = async (id) => {
+  const res = axios.get(
+    `https://busy-jade-mussel-sock.cyclic.app/products/${id}`
+  );
+  return res;
+};
