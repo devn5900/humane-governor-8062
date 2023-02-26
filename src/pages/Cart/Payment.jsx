@@ -11,9 +11,6 @@ const Payment = () => {
   const [cartdata, setCartdata] = useState(crtData);
   console.log("cartdata-pay:", cartdata.cartItem);
 
-  let loginuser = JSON.parse(localStorage.getItem("loggedInUser"));
-  console.log("loginuser:", loginuser.name);
-
   const empCart = () => {
     dispatch({ type: EMPTY_CART });
   };
