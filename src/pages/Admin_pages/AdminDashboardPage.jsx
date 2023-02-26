@@ -1,4 +1,4 @@
-import { Box, Heading, HStack, Stack, Text } from "@chakra-ui/layout";
+import { Box, HStack, Stack, Text } from "@chakra-ui/layout";
 import React, { useEffect } from "react";
 import Chart from "react-apexcharts";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,18 +11,18 @@ import {
 
 const AdminDashboardPage = () => {
   const dispatch = useDispatch();
-  const Mendata = useSelector((store) => store.admin.mens_Data);
-  const Womendata = useSelector((store) => store.admin.women_Data);
-  const Accessoriesdata = useSelector((store) => store.admin.accessories_Data);
+  const {mens_Data,women_Data,accessories_Data}= useSelector((store)=>store.admin)
+  
   useEffect(() => {
     dispatch(getMenData());
     dispatch(getWomenData());
     dispatch(getAssecccoriesData());
   }, []);
-  // console.log("Men",Mendata , "Women",Womendata , "Ass",Accessoriesdata)
-  const M = Mendata.length;
-  const W = Womendata.length;
-  const A = Accessoriesdata.length;
+  // console.log("Men",mens_Data , "Women",women_Data , "Ass",accessories_Data)
+  const M = mens_Data.length;
+  const W = women_Data.length;
+  const A = accessories_Data.length;
+
   return (
     <Box display="flex" w={"100%"} gap={0}>
       <Box width="20%">
@@ -59,12 +59,12 @@ const AdminDashboardPage = () => {
                 lineCap: "round",
               },
               radialBar: {
-                //  dataLabels: {
+                 dataLabels: {
                 total: {
                   show: true,
                   label: "TOTAL",
                 },
-                //  }
+                 }
               },
               labels: [
                 "MEN-PRODUCTS",

@@ -10,9 +10,9 @@
       "cartItem": []
     },
     {
-      "name": "Omi Khupse",
-      "email": "omikhupse@gmail.com",
-      "password": "Omi@1234",
+      "name": "",
+      "email": "",
+      "password": "",
       "avatar": "",
       "isLogged": false,
       "cartItem": [],
@@ -20,65 +20,84 @@
     },
     {
       "name": "omi",
-      "email": "omikhgfgy@gmail.com",
-      "password": "63431",
+      "email": "omib@gmail.com",
+      "password": "7896",
       "avatar": "",
-      "isLogged": true,
+      "isLogged": false,
       "cartItem": [],
       "id": 3
-    },
-    {
-      "name": "zoya",
-      "email": "zoya@gmail.com",
-      "password": "zoyz1234",
-      "avatar": "",
-      "isLogged": true,
-      "cartItem": [],
-      "id": 4
-    },
-    {
-      "id": 5
-    },
-    {
-      "id": 6
-    },
-    {
-      "id": 7
-    },
-    {
-      "id": 8
-    },
-    {
-      "id": 9
-    },
-    {
-      "id": 10
-    },
-    {
-      "id": 11
-    },
-    {
-      "id": 12
-    },
-    {
-      "name": "pooja",
-      "email": "pooja@gmail.com",
-      "password": "pooja1234",
-      "avatar": "",
-      "isLogged": true,
-      "cartItem": [],
-      "id": 13
-    },
-    {
-      "id": 14
     }
   ],
-  "comments": [
+  "cart": [
     {
+
       "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
+      "name": "Men's Purple Justice League Society Graphic",
+      "category": "T-Shirt",
+      "price": 429,
+      "design": "Graphic Print",
+      "type": "Men",
+      "offer": "14% OFF",
+      "brand": "Boogy®",
+      "discount": "66% OFF",
+      "rating": "1.3",
+      "image": "https://images.bewakoof.com/t640/men-s-purple-justice-league-society-graphic-printed-oversized-t-shirt-581274-1676971303-1.jpg",
+      "tags": [
+                {
+                  "type": "fit",
+                  "label": "OVERSIZED FIT",
+                  "bgColor": "rgba(82, 82, 82, 0.8)",
+                  "textColor": "#fff"
+                }
+              ],
+      "description": "For TriBe Members official dc comics merchandise by bewakoof.com Men's Purple Justice League Society Graphic Printed Oversized T-shirt Men's Purple Justice League Society Graphic Printed Oversized T-shirt"
+  },
+  {
+    "id": 2,
+    "name": "Zipped It Printed Small Backpack",
+    "category": "Backpack",
+    "price": 374,
+    "design": "Printed",
+    "image": "https://images.bewakoof.com/t640/zipped-it-printed-small-backpack-229513-1655746814-1.jpg",
+    "type": "accessories",
+    "offer": "14% OFF",
+    "brand": "Boogy®",
+    "discount": "37% OFF",
+    "tags": [
+      {
+        "type": "offer",
+        "label": "BUY 3 FOR 999",
+        "bgColor": "rgba(0, 184, 82, 0.8)",
+        "textColor": "#fff"
+      }
+    ],
+    "description": "For TriBe Members bewakoof Zipped It Printed Small Backpack Zipped It Printed Small Backpack",
+    
+    "rating": "4.7"
+  },
+  {
+    "id": 3,
+    "name": "Yin Yang Mandala Printed Small Backpack",
+    "category": "Backpack",
+    "price": 625,
+    "design": "Printed",
+    "image": "https://images.bewakoof.com/t640/yin-yang-mandala-printed-small-backpack-273339-1655749444-1.jpg",
+    "type": "accessories",
+    "offer": "14% OFF",
+    "brand": "Boogy®",
+    "discount": "12% OFF",
+    "tags": [
+      {
+        "type": "offer",
+        "label": "BUY 3 FOR 999",
+        "bgColor": "rgba(0, 184, 82, 0.8)",
+        "textColor": "#fff"
+      }
+    ],
+    "description": "For TriBe Members bewakoof Yin Yang Mandala Printed Small Backpack Yin Yang Mandala Printed Small Backpack",
+    
+    "rating": "3.6"
+  }
   ],
   "profile": {
     "name": "typicode"

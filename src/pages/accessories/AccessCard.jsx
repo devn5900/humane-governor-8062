@@ -10,13 +10,13 @@ import {
   HStack,
 } from '@chakra-ui/react';
 import { BsArrowUpRight, BsHeartFill, BsHeart } from 'react-icons/bs';
-import {Link as AccessLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 
-export default function AccessCard({name,description,image,id,brand,price,discount}) {
+export default function AccessCard({name,description,image,id,brand,price,discount,rating,category}) {
   const [liked, setLiked] = useState(false);
 
   return (
-    <Center py={6}>
+    <Center py={3}>
       <Box
         w="xs"
         rounded={'sm'}
@@ -27,13 +27,13 @@ export default function AccessCard({name,description,image,id,brand,price,discou
         border={'1px'}
         borderColor="black"
         boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 cyan')}>
-        <Box h={'200px'} borderBottom={'1px'} borderColor="black">
+        <Box h={'400px'} borderBottom={'1px'} borderColor="black">
           <Img
             src={image}
             roundedTop={'sm'}
-            objectFit="cover"
+            objectFit='fill'
             h="full"
-            w="full"
+            w='full'
             alt={'Blog Image'}
           />
         </Box>
@@ -45,10 +45,13 @@ export default function AccessCard({name,description,image,id,brand,price,discou
             py={1}
             color="white"
             mb={2}>
-            <Text fontSize={'xs'} fontWeight="medium">
-              {brand}
-            </Text>
+              <Text fontSize={'xs'} fontWeight="medium">
+                {brand}
+              </Text>
           </Box>
+          <Text fontSize={'md'} fontWeight="medium">
+              {category}
+          </Text>
           <Heading color={'black'} fontSize={'2xl'} noOfLines={1}>
             {name}
           </Heading>
@@ -60,10 +63,10 @@ export default function AccessCard({name,description,image,id,brand,price,discou
                 Price : ₹{price}
             </Text>
             <Text fontSize={'lg'} color={'green'} noOfLines={1}>
-               offer : {discount}
+               {discount ? `offer : ${discount}` : null}
             </Text>
           </Flex>
-          
+          <Text fontWeight={'semibold'} fontSize={'md'} color={'black'} noOfLines={1}>Rating {rating}</Text>
         </Box>
         <HStack borderTop={'1px'} color="black">
           <Flex
@@ -73,10 +76,10 @@ export default function AccessCard({name,description,image,id,brand,price,discou
             roundedBottom={'sm'}
             cursor={'pointer'}
             w="full">
-            <Text fontSize={'md'} fontWeight={'semibold'}>
+            <Link to={`/product/${id}/details`}><Text fontSize={'md'} fontWeight={'semibold'}>
               View more
-            </Text>
-            <BsArrowUpRight />
+            </Text></Link>
+            <Link to={`/product/${id}/details`}><BsArrowUpRight /></Link>
           </Flex>
           <Flex
             p={4}

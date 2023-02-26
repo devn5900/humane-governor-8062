@@ -22,7 +22,7 @@ export default function SliderCard({ data }) {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToScroll: 1,
           infinite: true,
           dots: true,
         },
@@ -31,7 +31,7 @@ export default function SliderCard({ data }) {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           initialSlide: 2,
         },
       },
@@ -46,18 +46,20 @@ export default function SliderCard({ data }) {
   };
 
   return (
-    <div>
-      <Slider {...settings}>
-        {data?.map((el) => {
-          return (
-            <div>
-              <Box pl={"0.3rem"}>
-                <Image src={el.image} />
-              </Box>
-            </div>
-          );
-        })}
-      </Slider>
-    </div>
+    <Box overflow={"hidden"}>
+      <div>
+        <Slider {...settings}>
+          {data?.map((el) => {
+            return (
+              <div key={Math.random() * 100 + 5}>
+                <Box pl={"0.3rem"}>
+                  <Image src={el.image} />
+                </Box>
+              </div>
+            );
+          })}
+        </Slider>
+      </div>
+    </Box>
   );
 }

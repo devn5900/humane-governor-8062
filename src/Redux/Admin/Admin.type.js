@@ -26,7 +26,7 @@ export const DELETE_USERS="delete/users";
 
 // -----------------UPDATE_TYPES------------------ ***
 
-export const UPDATE_MEN_PRODUCT="update/men/product";
+export const UPDATE_PRODUCT="update/product";
 export const UPDATE_WoMEN_PRODUCT="update/women/product";
 export const UPDATE_ACCESSORIES_PRODUCT="update/accesssories/product";
 

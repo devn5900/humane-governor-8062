@@ -19,11 +19,16 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import NavLinkChild from "./NavLinkChild";
 import { searchSuggestions } from "../../utils/api";
 import useThrottle from "../../hooks/useThrottle";
+import { RiAdminLine } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
+import { GET_LOGOUT_USER } from "../../Redux/Auth/actionType";
 const NavMain = () => {
+  const logUsr = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const [mapSearch, setMapSearch] = useState([]);
   const query = useThrottle(search, 500);
-  const [load, setLoad] = useState(true);
+  const [load, setLoad] = useState(false);
   const navItem = [
     {
       title: "MEN",
@@ -245,6 +250,11 @@ const NavMain = () => {
         setLoad(false);
       });
   };
+
+  const logout = () => {
+    dispatch({ type: GET_LOGOUT_USER });
+  };
+
   return (
     <Flex alignItems={"center"} p={"0.5rem"} justifyContent={"space-around"}>
       <Flex gap="2rem" alignItems={"center"}>
@@ -336,25 +346,34 @@ const NavMain = () => {
                 {!load &&
                   mapSearch?.map((el) => {
                     return (
-                      <Flex
-                        alignItems={"center"}
-                        mt={"0.2rem"}
-                        bg={"blackAlpha.50"}
-                        _hover={{ bg: "#E3E9ED" }}
-                        cursor={"pointer"}
-                        borderRadius={"sm"}
-                        overflow={"hidden"}
+                      <Link
+                        as={ReachLink}
                         key={Math.random() * 100 + 4}
+                        to={`/product/${el.id}/details`}
                       >
-                        <Box w={"13%"}>
-                          <Image src={el.image} w={"fit-content"} />
-                        </Box>
-                        <Box ml={"0.2rem"}>
-                          <Text textAlign={"start"} fontSize={"0.9rem"}>
-                            {el.title.trim()}
-                          </Text>
-                        </Box>
-                      </Flex>
+                        <Flex
+                          onClick={() => {
+                            setMapSearch([]);
+                            setSearch("");
+                          }}
+                          alignItems={"center"}
+                          mt={"0.2rem"}
+                          bg={"blackAlpha.50"}
+                          _hover={{ bg: "#E3E9ED" }}
+                          cursor={"pointer"}
+                          borderRadius={"sm"}
+                          overflow={"hidden"}
+                        >
+                          <Box w={"13%"}>
+                            <Image src={el.image} w={"fit-content"} />
+                          </Box>
+                          <Box ml={"0.2rem"}>
+                            <Text textAlign={"start"} fontSize={"0.9rem"}>
+                              {el.title.trim()}
+                            </Text>
+                          </Box>
+                        </Flex>
+                      </Link>
                     );
                   })}
               </Box>
@@ -363,8 +382,19 @@ const NavMain = () => {
         </Box>
 
         <Flex gap="1rem" alignItems={"center"}>
-          <Link as={ReachLink} to={"/register"}>Account</Link>
-          <Link to={"/cart"}>
+          {!logUsr?.isLogged ? (
+            <Link as={ReachLink} to={"/register"}>
+              Account
+            </Link>
+          ) : (
+            <Text onClick={logout}>{logUsr?.name}</Text>
+          )}
+          <Link as={ReachLink} to={"/admin-dashboard"}>
+            <Box pos="relative">
+              <Icon as={RiAdminLine} fontSize={"1.7rem"} />
+            </Box>
+          </Link>
+          <Link as={ReachLink} to={"/cart"}>
             <Box pos="relative">
               <Icon as={AiOutlineShoppingCart} fontSize={"1.7rem"} />
               <Badge
@@ -375,11 +405,11 @@ const NavMain = () => {
                 bg={"blackAlpha.900"}
                 color={"white"}
               >
-                5
+                {logUsr.cartItem?.length || 0}
               </Badge>
             </Box>
           </Link>
-          <Link to={"#"}>
+          <Link as={ReachLink} to={"#"}>
             <Image
               borderRadius="full"
               boxSize="2rem"
