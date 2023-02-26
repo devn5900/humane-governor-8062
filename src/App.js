@@ -8,7 +8,6 @@ import Footer from "./components/Footer";
 import AdminNavbar from "./components/Admin_components/AdminNavbar";
 import { useLocation } from "react-router-dom";
 
-
 function App() {
   const location = useLocation();
   const toggleNav = location.pathname.includes("admin");
@@ -17,14 +16,13 @@ function App() {
       {/* <Navbar /> */}
       {/* <AdminNavbar/> */}
 
-      {/* {!toggleNav ? <Navbar /> : <AdminNavbar />} */}
+      {!toggleNav ? <Navbar /> : <AdminNavbar />}
 
       {/* add your path in Routes/AllRoutes.jsx */}
       <AllRoutes />
       {!toggleNav && <Footer />}
-      
+
       {/* <Footer /> */}
-      
     </Box>
   );
 }
