@@ -24,15 +24,23 @@ import { MdLocalShipping } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import { getSingleProduct } from "../../utils/api";
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { GET_ADD_TO_CART } from "../../Redux/Auth/actionType";
 export default function ProductDetails() {
   const param = useParams();
   const [prod, setProd] = useState({});
-
+  const dispatch = useDispatch();
   useEffect(() => {
     getSingleProduct(param.id).then((res) => {
       setProd(res.data);
     });
   }, [param]);
+
+  const addtoCart = (data) => {
+    console.log(data);
+    dispatch({ type: GET_ADD_TO_CART, payload: data });
+  };
+
   return (
     <Container maxW={"7xl"}>
       <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 8, md: 10 }}>
@@ -197,6 +205,9 @@ export default function ProductDetails() {
             _hover={{
               transform: "translateY(2px)",
               boxShadow: "lg",
+            }}
+            onClick={() => {
+              addtoCart(prod);
             }}
           >
             Add to cart
