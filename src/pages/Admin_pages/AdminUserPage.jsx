@@ -13,12 +13,12 @@ const AdminUserPage = () => {
   },[])
   console.log(userData)
   return (
-    <Box  w={"100%"} gap={0} display="flex" alignItems={"center"} >
+    <Box  w={"100%"} gap={0} display="flex"  >
        <Box width="20%" >
             <AdminNavbar/>
        </Box>
-       <Stack margin={"auto"} w={"80%"} marginTop="100px" >
-       <Stack justifyContent={'center'} margin={"auto"} >
+       <Stack  w={"80%"} marginTop="100px" >
+       <Box textAlign={"center"} w="100%" >
     <Heading mt={5} size={'lg'} >TOTAL USERS : {userData.length}</Heading>
     <HStack justifyContent={'center'}>
     <AvatarGroup size='md' max={3} mt={3}>
@@ -27,17 +27,17 @@ const AdminUserPage = () => {
     ))}
 </AvatarGroup>
 </HStack>
-    </Stack>
+    </Box >
     {/* <Stack margin={"auto"} width="100%" justifyContent={"center"} > */}
-       <Box margin={"auto"} background={"#fff"} width={["100%","100%" ,"100%" , "80%"]} marginTop={"200px"}>
-
+       {/* <Box margin={"auto"}  background={"#fff"} width={["100%","100%" ,"100%" , "80%"]} marginTop={"200px"}> */}
+        <div style={{margin:"auto" , background:"#fff"}} width="100%"  >
          {
           userData.length!==0 && userData.map((el)=>(
             <UserCard key={el.id} {...el} />
           ))
          }
-
-       </Box>
+        </div>
+       {/* </Box> */}
        {/* </Stack>  */}
     </Stack>
     </Box>
