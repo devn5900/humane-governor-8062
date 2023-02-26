@@ -6,20 +6,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { EMPTY_CART } from "../../Redux/Auth/actionType";
 
 const Payment = () => {
-    const crtData = useSelector(store=>store.auth)
-const dispatch = useDispatch()
-  const [cartdata, setCartdata] = useState(
-    crtData
-  );
+  const crtData = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
+  const [cartdata, setCartdata] = useState(crtData);
   console.log("cartdata-pay:", cartdata.cartItem);
 
   let loginuser = JSON.parse(localStorage.getItem("loggedInUser"));
   console.log("loginuser:", loginuser.name);
 
-const empCart=()=>{
-    dispatch({type:EMPTY_CART})
-}
-
+  const empCart = () => {
+    dispatch({ type: EMPTY_CART });
+  };
 
   let total = 0;
   let discount = 0;
