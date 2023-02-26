@@ -24,6 +24,7 @@ export const reducer = (state = init, { type, payload }) => {
     case GET_ADD_TO_CART:
       return { ...state, cartItem: [...state.cartItem, payload] };
     case GET_REMOVE_CART:
+      console.log(payload)
       return {
         ...state,
         cartItem: [...state.cartItem.filter((el) => el.id !== payload)],

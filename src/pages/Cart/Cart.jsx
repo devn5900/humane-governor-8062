@@ -2,16 +2,35 @@ import React, { useEffect, useState } from "react";
 import EmptyCart from "./EmptyCart";
 import { Link, useNavigate } from "react-router-dom";
 import boogylogo from "../../images/boogylogo.png";
-import { Box, Image, Text, Button, Divider, Center } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
+import { Box, Image, Text, Button, Divider, Center, useToast } from "@chakra-ui/react";
+import { useSelector,useDispatch, shallowEqual } from "react-redux";
+import { GET_REMOVE_CART } from "../../Redux/Auth/actionType";
 
 const Cart = () => {
   const Navigate = useNavigate();
-  const cart = useSelector((store) => store.auth);
-  const data = cart.cartItem;
-  const [islog, setisLog] = useState(
-    JSON.parse(localStorage.getItem("loggedInUser"))
-  );
+  const [Qty,setQty]=useState(1)
+  const cart = useSelector((store) => store.auth,shallowEqual);
+  const cartData = useSelector((store) => store.auth.cartItem,shallowEqual);
+ const toast=useToast()
+  
+  const dispatch = useDispatch();
+
+
+  const removeCart = (id) => {
+    console.log(id)
+    if (cart?.isLogged) {
+      dispatch({ type: GET_REMOVE_CART, payload:id});
+    }else{
+      toast({
+        title: "Please login first.",
+        position: "top",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  
+  };
 
   if (!cart?.isLogged) {
     Navigate("/login");
@@ -21,15 +40,15 @@ const Cart = () => {
   let discount = 0;
   let subtotal = 0;
 
-  if (data.length > 0) {
-    data?.forEach((el) => {
+  if (cartData?.length > 0) {
+    cartData?.forEach((el) => {
       total += el.price;
       discount = Math.floor(el.price / 8);
       subtotal = total - discount;
       console.log("total:", total);
     });
   } else {
-    // console.log('empty data')
+    // console.log('empty cartData?')
     return <EmptyCart />;
   }
 
@@ -51,7 +70,7 @@ const Cart = () => {
         >
           <Box mb="6">
             <Text fontSize="lg" letterSpacing={1}>
-              <span style={{ fontWeight: "bold" }}>My Bag</span> {data.length}{" "}
+              <span style={{ fontWeight: "bold" }}>My Bag</span> {cartData?.length}{" "}
               item(s)
             </Text>
           </Box>
@@ -77,9 +96,9 @@ const Cart = () => {
           </Box>
 
           <Box>
-            {/* map data */}
+            {/* map cartData? */}
 
-            {data.map((el, id) => (
+            {cartData?.map((el, id) => (
               <Box
                 key={el.id}
                 border="1px solid #d8d4d4"
@@ -121,10 +140,9 @@ const Cart = () => {
                         fontSize="10"
                       >
                         Size : <span style={{ flexWeight: "bold" }}>M</span>
-                        {/* add modal-93 */}
                       </Box>
 
-                      <Box
+                      {/* <Box
                         justifyContent="center"
                         textAlign="center"
                         alignItems="center"
@@ -136,9 +154,10 @@ const Cart = () => {
                         bg="white"
                         fontSize="10"
                       >
-                        Qty : <span style={{ flexWeight: "bold" }}>1</span>
-                        {/* add modal-98 */}
-                      </Box>
+                       <Button onClick={()=>setQty(Qty+1)}>+</Button>
+                        Qty : <span style={{ flexWeight: "bold" }}>{Qty}</span>
+                        <Button onClick={()=>setQty(Qty+1)}>-</Button>
+                      </Box> */}
                     </Box>
                   </Box>
                   <Box w="25%">
@@ -164,6 +183,7 @@ const Cart = () => {
                     border="0.5px solid #eae5e5"
                     p="3"
                     borderRadius="0px"
+                    onClick={()=>removeCart(el.id)}
                   >
                     Remove
                   </Box>
