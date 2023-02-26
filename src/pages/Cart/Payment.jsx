@@ -170,14 +170,6 @@ const Payment = () => {
 
         {/* left div */}
         <Box w="40%" m="auto" mt="0" border="1px solid white">
-          <Box p="3" borderRadius="6" pt="0">
-            <Text letterSpacing={0.8} fontSize="14">
-              Delivering order to{" "}
-              <span style={{ fontWeight: "bold" }}>{loginuser.name}</span>{" "}
-              Amravati, Maharashtra, 444603
-            </Text>
-          </Box>
-
           <Divider borderColor="grey" />
 
           <Box
