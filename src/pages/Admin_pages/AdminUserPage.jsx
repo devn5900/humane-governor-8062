@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import AdminNavbar from '../../components/Admin_components/AdminNavbar'
 import UserCard from '../../components/Admin_components/UserCart'
 import { deleteUserData, getUserSData } from '../../Redux/Admin/Admin.action'
-
+import { useToast } from '@chakra-ui/react';
 const AdminUserPage = () => {
+  const toast = useToast();
   const dispatch=useDispatch()
   const userData= useSelector((store)=>store.admin.userData)
   useEffect(()=>{
@@ -14,6 +15,18 @@ const AdminUserPage = () => {
 
   const handleDelete=(id)=>{
     dispatch(deleteUserData(id))
+    setTimeout(()=>{
+      toast({
+        title: 'Successfully Deleted.',
+        
+        position: 'top-right',
+        description: "You have deleted user successfully.",
+        status: 'info',
+        duration:1500,
+        isClosable: true,
+      });
+    },1000)
+    
   }
 
   console.log(userData)

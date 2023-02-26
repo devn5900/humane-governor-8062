@@ -23,7 +23,7 @@ const AdminWomenPage = () => {
 // console.log(WomenData)
 
   const handleDelete=(id)=>{
-    dispatch(deleteWomenData(id))
+    dispatch(deleteWomenData(id,title,price,discount))
     setTimeout(()=>{
     toast({
       title: 'Successfully Deleted.',
@@ -55,7 +55,10 @@ const AdminWomenPage = () => {
     })
   }
 
-  const handleOpen=(id)=>{
+  const handleOpen=(id,name , discount , price)=>{
+    setTitle(name)
+    setDiscount(discount)
+    setPrice(price)
     setId(id);
     onOpen();
   }
