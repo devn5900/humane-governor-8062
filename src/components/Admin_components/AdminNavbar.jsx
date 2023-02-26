@@ -37,7 +37,7 @@ import {RiAccountPinCircleFill,RiLogoutCircleFill} from 'react-icons/ri'
 
 const LinkItems= [
   { name: 'Home', icon: AiFillHome, path:'/admin-dashboard'},
-  // { name: 'Add Product', icon: HiFolderAdd, path:'/add-products' },
+  { name: 'Add Product', icon: HiFolderAdd, path:'/admin-addproduct' },
   { name: 'Men', icon: ImMan, path:'/admin-men' },
   { name: 'Women', icon: ImWoman, path:'/admin-women' },
   { name: 'Accessories', icon: FaChild, path:'/admin-accessories' },

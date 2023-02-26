@@ -1,5 +1,5 @@
 
-import { deleteMenDataAPI, getAssecccoriesDataAPI, getMensDataAPI, getWomensDataAPI } from "./Admin.api";
+import { deleteMenDataAPI, getAssecccoriesDataAPI, getMensDataAPI, getWomensDataAPI, postMenDataAPI, updateProductAPI } from "./Admin.api";
 import * as types from "./Admin.type";
 
 // GET_ACTIONS
@@ -69,3 +69,53 @@ export const deleteAccessoriesData=(id)=>async(dispatch)=>{
     }
     dispatch(getAssecccoriesData())
 }
+
+// UPDATE Actions
+
+export const updateProductData=(id,newTitle,newPrice,newDiscount)=>async(dispatch)=>{
+    dispatch({type:types.PRODUCT_LOADING})
+    try {
+        await updateProductAPI(id,newTitle,newPrice,newDiscount);
+        dispatch({type:types.UPDATE_PRODUCT});
+    } catch (error) {
+        dispatch({type:types.PRODUCT_ERROR})
+    }
+}
+
+
+// POST ACTIONS
+
+export const PostMenData=(menProduct)=>async(dispatch)=>{
+    console.log("Men",menProduct)
+    dispatch({type:types.PRODUCT_LOADING});
+    try {
+        return postMenDataAPI(menProduct).then((res)=>console.log(res))
+        
+    } catch (error) {
+        dispatch({type:types.PRODUCT_ERROR})
+    }
+}
+
+export const PostWomenData=(womenProduct)=>async(dispatch)=>{
+    console.log("Men",womenProduct)
+    dispatch({type:types.PRODUCT_LOADING});
+    try {
+        return postMenDataAPI(womenProduct).then((res)=>console.log(res))
+        
+    } catch (error) {
+        dispatch({type:types.PRODUCT_ERROR})
+    }
+}
+
+export const PostAccessoriesData=(AcceProduct)=>async(dispatch)=>{
+    console.log("Men",AcceProduct)
+    dispatch({type:types.PRODUCT_LOADING});
+    try {
+        return postMenDataAPI(AcceProduct).then((res)=>console.log(res))
+        
+    } catch (error) {
+        dispatch({type:types.PRODUCT_ERROR})
+    }
+}
+
+

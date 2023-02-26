@@ -22,6 +22,7 @@ import Payment from '../pages/Cart/Payment'
 import Menspage from "../pages/Menspage/Menspage";
 
 import Thankyou from '../pages/Cart/Thankyou';
+import AdminAddProductsPage from "../pages/Admin_pages/AdminAddProductPage";
 
 const AllRoutes = () => {
   return (
@@ -35,6 +36,7 @@ const AllRoutes = () => {
       <Route path="/admin-accessories" element={<AdminAccePage/>} />
       <Route path="/admin-users" element={<AdminUserPage/>} />
       <Route path="/admin-dashboard" element={<AdminDashboardPage/>} />
+      <Route path="/admin-addproduct" element={<AdminAddProductsPage/>} />
 
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
