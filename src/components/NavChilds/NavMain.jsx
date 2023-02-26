@@ -20,7 +20,11 @@ import NavLinkChild from "./NavLinkChild";
 import { searchSuggestions } from "../../utils/api";
 import useThrottle from "../../hooks/useThrottle";
 import { RiAdminLine } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
+import { GET_LOGOUT_USER } from "../../Redux/Auth/actionType";
 const NavMain = () => {
+  const logUsr = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const [mapSearch, setMapSearch] = useState([]);
   const query = useThrottle(search, 500);
@@ -246,6 +250,11 @@ const NavMain = () => {
         setLoad(false);
       });
   };
+
+  const logout = () => {
+    dispatch({ type: GET_LOGOUT_USER });
+  };
+
   return (
     <Flex alignItems={"center"} p={"0.5rem"} justifyContent={"space-around"}>
       <Flex gap="2rem" alignItems={"center"}>
@@ -373,9 +382,13 @@ const NavMain = () => {
         </Box>
 
         <Flex gap="1rem" alignItems={"center"}>
-          <Link as={ReachLink} to={"/register"}>
-            Account
-          </Link>
+          {!logUsr?.isLogged ? (
+            <Link as={ReachLink} to={"/register"}>
+              Account
+            </Link>
+          ) : (
+            <Text onClick={logout}>{logUsr?.name}</Text>
+          )}
           <Link as={ReachLink} to={"/admin-dashboard"}>
             <Box pos="relative">
               <Icon as={RiAdminLine} fontSize={"1.7rem"} />
@@ -392,7 +405,7 @@ const NavMain = () => {
                 bg={"blackAlpha.900"}
                 color={"white"}
               >
-                5
+                {logUsr.cartItem?.length || 0}
               </Badge>
             </Box>
           </Link>

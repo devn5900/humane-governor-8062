@@ -10,7 +10,7 @@ const NavSections = () => {
         alignItems={"center"}
         gap={"3rem"}
       >
-        <Link textDecoration={"none"} to="#" as={ReachLink}>
+        <Link textDecoration={"none"} to="/mens" as={ReachLink}>
           MEN
         </Link>
         <Link textDecor={"none"} to="#" as={ReachLink}>

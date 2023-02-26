@@ -5,6 +5,9 @@ import { Box, Image, Text, Button, Divider } from "@chakra-ui/react";
 import boogylogo from "../../images/boogylogo.png";
 
 const EmptyCart = () => {
+  let loginuser = JSON.parse(localStorage.getItem("loggedInUser"));
+  console.log("loginuser:", loginuser.name);
+
   return (
     <Box>
       <Box w="30%" m="auto" alignItems="center" textAlign="center" mt="6">
