@@ -2,15 +2,24 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import boogylogo from "../../images/boogylogo.png";
 import { Box, Image, Text, Button, Divider, Center } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
+import { EMPTY_CART } from "../../Redux/Auth/actionType";
 
 const Payment = () => {
+    const crtData = useSelector(store=>store.auth)
+const dispatch = useDispatch()
   const [cartdata, setCartdata] = useState(
-    JSON.parse(localStorage.getItem("loggedInUser"))
+    crtData
   );
   console.log("cartdata-pay:", cartdata.cartItem);
 
   let loginuser = JSON.parse(localStorage.getItem("loggedInUser"));
   console.log("loginuser:", loginuser.name);
+
+const empCart=()=>{
+    dispatch({type:EMPTY_CART})
+}
+
 
   let total = 0;
   let discount = 0;
@@ -152,6 +161,7 @@ const Payment = () => {
                   w="100%"
                   h="12"
                   mt="4"
+                  onClick={empCart}
                 >
                   Pay ₹{totalAmount + 20}
                 </Button>
