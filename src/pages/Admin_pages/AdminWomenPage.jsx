@@ -1,22 +1,63 @@
 import { Box, HStack} from '@chakra-ui/layout';
+import { Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react';
 import { Table, TableContainer, Tbody, Th, Thead, Tr } from '@chakra-ui/table';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import AdminNavbar from '../../components/Admin_components/AdminNavbar';
 import SingleCart from '../../components/Admin_components/SingleCart';
-import {  deleteWomenData, getWomenData } from '../../Redux/Admin/Admin.action';
-
+import {  deleteWomenData, getWomenData, updateProductData } from '../../Redux/Admin/Admin.action';
+import { useToast } from '@chakra-ui/react';
 const AdminWomenPage = () => {
+  const toast = useToast();
   const dispatch=useDispatch();
   const WomenData=useSelector((state)=>state.admin.women_Data);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [price , setPrice]=useState("");
+  const [discount , setDiscount]=useState("");
+  const [title, setTitle]=useState("");
+  const [id , setId]=useState("");
   useEffect(()=>{
     dispatch(getWomenData())
   },[])
 
-console.log(WomenData)
+// console.log(WomenData)
 
   const handleDelete=(id)=>{
     dispatch(deleteWomenData(id))
+    setTimeout(()=>{
+    toast({
+      title: 'Successfully Deleted.',
+      
+      position: 'top-right',
+      description: "You have updated product successfully.",
+      status: 'info',
+      duration:1500,
+      isClosable: true,
+    });
+  },1000)
+  }
+
+  const handleUpdate=()=>{
+    dispatch(updateProductData(id,title,price,discount)).then(()=>{
+      dispatch(getWomenData())
+      onClose();
+      setTimeout(()=>{
+      toast({
+        title: 'Successfully Updated',
+        
+        position: 'top-right',
+        description: "You have deleted product successfully.",
+        status: 'info',
+        duration:1500,
+        isClosable: true,
+      });
+    },1000)
+    })
+  }
+
+  const handleOpen=(id)=>{
+    setId(id);
+    onOpen();
   }
 
   return (
@@ -46,12 +87,62 @@ console.log(WomenData)
                   key={item.id}
                   {...item}
                   handleDelete={handleDelete} 
+                  handleOpen={handleOpen}
                   />
                 ))
               }
             </Tbody>
           </Table>
         </TableContainer>
+        <Modal
+          isOpen={isOpen}
+          onClose={onClose}
+          isCentered
+        >
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Edit Product Details</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody pb={6}>
+              <FormControl>
+                <FormLabel>Title</FormLabel>
+                <Input
+                  type={"text"}
+                  placeholder="Title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+              </FormControl>
+
+              <FormControl mt={4}>
+                <FormLabel>Dicscount Price </FormLabel>
+                <Input
+                  placeholder="Discount"
+                  type={"text"}
+                  value={discount}
+                  onChange={(e) => setDiscount(e.target.value)}
+                />
+              </FormControl>
+
+              <FormControl mt={4}>
+                <FormLabel>Price</FormLabel>
+                <Input
+                  placeholder="Price"
+                  type={"text"}
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                />
+              </FormControl>
+            </ModalBody>
+
+            <ModalFooter>
+              <Button colorScheme="blue" mr={3} onClick={handleUpdate}>
+                Save
+              </Button>
+              <Button onClick={onClose}>Cancel</Button>
+          </ModalFooter>
+      </ModalContent>
+   </Modal>
         <Box mt="10px" bg="#fff" textAlign={'center'} >
         </Box>
       </Box>
