@@ -389,7 +389,10 @@ const NavMain = () => {
           ) : (
             <Text onClick={logout}>{logUsr?.name}</Text>
           )}
-          <Link as={ReachLink} to={"/admin-dashboard"}>
+          <Link
+            as={ReachLink}
+            to={logUsr.isLogged ? "/admin-dashboard" : "/login"}
+          >
             <Box pos="relative">
               <Icon as={RiAdminLine} fontSize={"1.7rem"} />
             </Box>
