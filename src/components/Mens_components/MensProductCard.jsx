@@ -1,45 +1,53 @@
 import {
-    Flex,
-    Box,
-    Image,
-    Badge,
-    useColorModeValue,
-    Icon,
-    chakra,
-    Tooltip,
-    Text,
-  } from "@chakra-ui/react";
-  // import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs';
-  import { FiShoppingCart } from "react-icons/fi";
-  
-  const tag = "FOR TRIBE MEMBERS";
-  
-  function MensProductCard({ id, name, price, image, description, brand,rating }) {
-    return (
-    
-      <Flex p={5} w="sm" gap={6} alignItems="center" justifyContent="center">
-        <Box
+  Flex,
+  Box,
+  Image,
+  Badge,
+  useColorModeValue,
+  Icon,
+  chakra,
+  Link,
+  Tooltip,
+  Text,
+} from "@chakra-ui/react";
+// import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs';
+import { FiShoppingCart } from "react-icons/fi";
+import { Link as ReachLink } from "react-router-dom";
+const tag = "FOR TRIBE MEMBERS";
+
+function MensProductCard({
+  id,
+  name,
+  price,
+  image,
+  description,
+  brand,
+  rating,
+}) {
+  return (
+    <Flex p={5} w="sm" gap={6} alignItems="center" justifyContent="center">
+      <Box
         //    border={'1px solid red'}
-          bg={useColorModeValue("white", "gray.800")}
-          w='98%'
+        bg={useColorModeValue("white", "gray.800")}
+        w="98%"
         //   w={'sm'}
-          borderWidth="1px"
-          borderTop={"0px"}
-          rounded="md"
-          shadow="md"
-          position="relative"
-        >
-          <Image
-            
-            // objectFit={"contain"}
-            src={image}
-            w={"sm"}
-            alt={`Picture of ${name}`}
-            roundedTop="lg"
-          />
-           <Badge colorScheme="gray" mt={-20} mr={'100%'} >
-                  {rating}⭐
-            </Badge>
+        borderWidth="1px"
+        borderTop={"0px"}
+        rounded="md"
+        shadow="md"
+        position="relative"
+      >
+        <Image
+          // objectFit={"contain"}
+          src={image}
+          w={"sm"}
+          alt={`Picture of ${name}`}
+          roundedTop="lg"
+        />
+        <Badge colorScheme="gray" mt={-20} mr={"100%"}>
+          {rating}⭐
+        </Badge>
+        <Link as={ReachLink} to={`/product/${id}/details`}>
           <Box p="3">
             <Box alignItems="baseline" mt={-25}>
               <Badge
@@ -107,11 +115,10 @@ import {
               {`₹${price.toFixed(2)}`} {tag.toLowerCase()}
             </Badge>
           </Box>
-        </Box>
-      </Flex>
-      
-    );
-  }
-  
-  export default MensProductCard;
-  
+        </Link>
+      </Box>
+    </Flex>
+  );
+}
+
+export default MensProductCard;
