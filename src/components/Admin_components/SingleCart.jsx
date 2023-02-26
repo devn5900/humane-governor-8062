@@ -26,7 +26,7 @@ const SingleCart = ({id,name,price,brand,discount,image , category,handleDelete,
           bg={"fff"}
           color={"black"}
           _hover={{ color: "black", backgroundColor: "gray.200" }}
-          onClick={() => handleOpen(id)}
+          onClick={() => handleOpen(id,name , discount ,price)}
         >
           <EditIcon />
         </Button>
