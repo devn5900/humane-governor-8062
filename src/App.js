@@ -7,7 +7,7 @@ import AllRoutes from "./Routes/AllRoutes";
 import Footer from "./components/Footer";
 import AdminNavbar from "./components/Admin_components/AdminNavbar";
 import { useLocation } from "react-router-dom";
-import Register from "./pages/Authentication/Register";
+
 function App() {
   const location = useLocation();
   const toggleNav = location.pathname.includes("admin");
@@ -21,7 +21,7 @@ function App() {
       {/* add your path in Routes/AllRoutes.jsx */}
       <AllRoutes />
       {!toggleNav && <Footer />}
-      {/* <Register/> */}
+
       {/* <Footer /> */}
     </Box>
   );

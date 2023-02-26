@@ -76,10 +76,10 @@ export default function AccessCard({name,description,image,id,brand,price,discou
             roundedBottom={'sm'}
             cursor={'pointer'}
             w="full">
-            <Text fontSize={'md'} fontWeight={'semibold'}>
+            <Link to={`/product/${id}/details`}><Text fontSize={'md'} fontWeight={'semibold'}>
               View more
-            </Text>
-            <BsArrowUpRight />
+            </Text></Link>
+            <Link to={`/product/${id}/details`}><BsArrowUpRight /></Link>
           </Flex>
           <Flex
             p={4}

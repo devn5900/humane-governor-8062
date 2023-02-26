@@ -29,7 +29,9 @@ import {
 import Loader from '../../components/Loader';
 import { useState } from 'react';
 import {accessSearch} from "../../utils/api";
-import { Radio, RadioGroup } from '@chakra-ui/react'
+import { Radio, RadioGroup } from '@chakra-ui/react';
+import Footer from "../../components/Footer"
+
 
 const LinkItems = [
   { name: 'Home', icon: FiHome },
@@ -42,7 +44,7 @@ function Sidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   
   return (
-    <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
+    <Box  bg={useColorModeValue('gray.100', 'gray.900')}>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: 'none', md: 'block' }}
@@ -116,7 +118,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       borderRightColor={useColorModeValue('gray.200', 'gray.700')}
       w={{ base: 'full', md: 60 }}
       pos="absolute"
-      h="full"
+      // h="full"
       {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Input size={'md'} 
@@ -245,23 +247,26 @@ const AllAccessoriesProducts = () => {
       <Box >
         <Sidebar/>
       </Box>
-      <Box style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gridTemplateRows:"auto",gap:"15px"}}>
-        {loading ? <Loader/> : error ? <h1>Something is wrong...Please refresh</h1> : data?.map((e) => {
-            return <AccessCard key={e.id} {...e}/>
-        })}
-        {/* hy */}
+      <Box>
+        <Box style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gridTemplateRows:"auto",gap:"15px"}}>
+          {loading ? <Loader/> : error ? <h1>Something is wrong...Please refresh</h1> : data?.map((e) => {
+              return <AccessCard key={e.id} {...e}/>
+          })}
+          {/* hy */}
+        </Box>
+        <Center my={5}>
+          <Button variant={'ghost'} isDisabled={page === 1} onClick={() => setPage(page - 1)}>Prev</Button>
+          <Button variant={'ghost'} isDisabled>{page}</Button>
+          <Button variant={'ghost'} onClick={() => setPage(page + 1)}>Next</Button>
+        </Center>
+        {/* <Footer/> */}
       </Box>
-      
     </Flex>
 
      {/* Pagination */}
 
-    <Center my={5}>
-      <Button variant={'ghost'} isDisabled={page === 1} onClick={() => setPage(page - 1)}>Prev</Button>
-      <Button variant={'ghost'} isDisabled>{page}</Button>
-      <Button variant={'ghost'} onClick={() => setPage(page + 1)}>Next</Button>
-    </Center>
-
+    
+    
   </Box>
 }
 
