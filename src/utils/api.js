@@ -12,31 +12,31 @@ export const searchSuggestions = async (searchText) => {
 
 export const getAccessoriesData = (val) => {
   const res = axios.get(
-    `https://busy-jade-mussel-sock.cyclic.app/products?type=accessories&_limit=15&_page=${val}`
+    `https://busy-jade-mussel-sock.cyclic.app/products?type=accessories&_limit=21&_page=${val}`
   );
 
   return res;
 };
 
-export const accessSearch = (val) => {
+export const accessSearch = (search) => {
   const res = axios.get(
-    `https://busy-jade-mussel-sock.cyclic.app/products?type=accessories&_limit=15&q=${val}`
+    `https://busy-jade-mussel-sock.cyclic.app/products?type=accessories&_limit=21&q=${search}`
   );
 
   return res;
 };
 
-export const accessSort = (val) => {
+export const accessSort = (sort,search) => {
   const res = axios.get(
-    `https://busy-jade-mussel-sock.cyclic.app/products?type=accessories&_limit=15&_sort=price&_order=${val}`
+    `https://busy-jade-mussel-sock.cyclic.app/products?type=accessories&_limit=21&_sort=price&_order=${sort}&q=${search}`
   );
 
   return res;
 };
 
-export const accessRate = (val) => {
+export const accessRate = (rating,search) => {
   const res = axios.get(
-    `https://busy-jade-mussel-sock.cyclic.app/products?type=accessories&_limit=15&_sort=rating&_order=${val}`
+    `https://busy-jade-mussel-sock.cyclic.app/products?type=accessories&_limit=21&_sort=rating&_order=${rating}&q=${search}`
   );
 
   return res;
@@ -97,6 +97,35 @@ export const mensRate = (val) => {
 
 
 export const getSingleMensProduct = async (id) => {
+  const res = axios.get(
+    `https://busy-jade-mussel-sock.cyclic.app/products/${id}`
+  );
+  return res;
+};
+
+
+
+// Womens section
+
+
+export const womensSort = (val) => {
+  const res = axios.get(
+    `https://busy-jade-mussel-sock.cyclic.app/products?type=Women&_limit=15&_sort=price&_order=${val}`
+  );
+
+  return res;
+};
+
+export const womensRate = (val) => {
+  const res = axios.get(
+    `https://busy-jade-mussel-sock.cyclic.app/products?type=Women&_limit=15&_sort=rating&_order=${val}`
+  );
+
+  return res;
+};
+
+
+export const getSingleWomensProduct = async (id) => {
   const res = axios.get(
     `https://busy-jade-mussel-sock.cyclic.app/products/${id}`
   );

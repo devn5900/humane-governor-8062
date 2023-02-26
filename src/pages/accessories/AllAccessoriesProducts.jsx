@@ -90,14 +90,14 @@ const SidebarContent = ({ onClose, ...rest }) => {
 
   const handleSort = (val) => {
     dispatch(accessLoading())
-    accessSort(val)
+    accessSort(val,query)
     .then((res) => dispatch(getAccessoriesProducts(res.data)))
     .catch((e) => dispatch(accessError()))
   }
 
   const handleRating = (val) => {
     dispatch(accessLoading())
-    accessRate(val)
+    accessRate(val,query)
     .then((res) => dispatch(getAccessoriesProducts(res.data)))
     .catch((e) => dispatch(accessError()))
   }
@@ -107,7 +107,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
     handleSearch()
     // handleSort()
     // handleRating()
-  },[query])
+  },[])
 
   
 
@@ -247,25 +247,23 @@ const AllAccessoriesProducts = () => {
       <Box >
         <Sidebar/>
       </Box>
-      <Box>
+
         <Box style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gridTemplateRows:"auto",gap:"15px"}}>
           {loading ? <Loader/> : error ? <h1>Something is wrong...Please refresh</h1> : data?.map((e) => {
               return <AccessCard key={e.id} {...e}/>
           })}
           {/* hy */}
         </Box>
-        <Center my={5}>
-          <Button variant={'ghost'} isDisabled={page === 1} onClick={() => setPage(page - 1)}>Prev</Button>
-          <Button variant={'ghost'} isDisabled>{page}</Button>
-          <Button variant={'ghost'} onClick={() => setPage(page + 1)}>Next</Button>
-        </Center>
-        {/* <Footer/> */}
-      </Box>
+      
     </Flex>
 
      {/* Pagination */}
 
-    
+     <Center my={5}>
+          <Button variant={'ghost'} isDisabled={page === 1} onClick={() => setPage(page - 1)}>Prev</Button>
+          <Button variant={'ghost'} isDisabled>{page}</Button>
+          <Button variant={'ghost'} onClick={() => setPage(page + 1)}>Next</Button>
+        </Center>
     
   </Box>
 }

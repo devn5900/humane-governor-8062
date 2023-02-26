@@ -47,11 +47,10 @@ const Login = () => {
   };
   const authLogin = () => {
     loginUser(user).then((res) => {
-      console.log(res);
       res = { ...res[0], isLogged: true };
       dispatch({ type: GET_LOGIN_USER, payload: { ...res, isLogged: true } });
-      console.log(res.name);
-      if (res.name == "admin") {
+      if (user.includes("admin") || res.name == "admin") {
+        console.log("log", res.name);
         Navigate("/admin-dashboard");
       } else {
         Navigate("/");
