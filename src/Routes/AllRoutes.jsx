@@ -15,6 +15,7 @@ import Index from "../pages/Index";
 import Login from "../pages/Authentication/Login"
 import Register from "../pages/Authentication/Register"
 import Signup from "../pages/Authentication/Signup"
+import AdminAddProductsPage from "../pages/Admin_pages/AdminAddProductPage";
 
 
 
@@ -38,6 +39,7 @@ const AllRoutes = () => {
       <Route path="/admin-accessories" element={<AdminAccePage/>} />
       <Route path="/admin-users" element={<AdminUserPage/>} />
       <Route path="/admin-dashboard" element={<AdminDashboardPage/>} />
+      <Route path="/admin-addproduct" element={<AdminAddProductsPage/>} />
 
 
       <Route path="*" element={<h1>404</h1>} />

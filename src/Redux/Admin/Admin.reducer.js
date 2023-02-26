@@ -71,7 +71,31 @@ export const adminReducer = (state = initialState, { type, payload }) => {
           ...state,
           loading:false,
           error:false,
-        }      
+        }
+      case types.UPDATE_PRODUCT:
+        return {
+          ...state,
+          loading:false,
+          error:false
+        }
+      case types.ADD_MEN_PRODUCT_SUCCESS:
+        return {
+          ...state,
+          loading:false,
+          error:false,
+        }   
+        case types.ADD_WOMEN_PRODUCT_SUCCESS:
+          return {
+            ...state,
+            loading:false,
+            error:false,
+          } 
+          case types.ADD_ACCESSORIES_PRODUCT_SUCCESS:
+            return {
+              ...state,
+              loading:false,
+              error:false,
+            }              
      default :
      return state 
   }
