@@ -29,7 +29,6 @@ const NavMain = () => {
   const [mapSearch, setMapSearch] = useState([]);
   const query = useThrottle(search, 500);
   const [load, setLoad] = useState(false);
-
   const navItem = [
     {
       title: "MEN",

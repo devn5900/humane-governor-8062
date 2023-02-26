@@ -3,34 +3,19 @@ import EmptyCart from "./EmptyCart";
 import { Link, useNavigate } from "react-router-dom";
 import boogylogo from "../../images/boogylogo.png";
 import { Box, Image, Text, Button, Divider, Center } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
 
 const Cart = () => {
-  const [data, setData] = useState([]);
   const Navigate = useNavigate();
-
+  const cart = useSelector((store) => store.auth);
+  const data = cart.cartItem;
   const [islog, setisLog] = useState(
     JSON.parse(localStorage.getItem("loggedInUser"))
   );
-  // const getData = async ()=>{
-  //     try
-  //     {
-  //         const res = await fetch(`http://localhost:8080/cart`)
-  //         const data = await res.json();
-  //         console.log('data:',data)
-  //         localStorage.setItem('cartData',JSON.stringify(data))
-  //     }
-  //     catch(err)
-  //     {
-  //         console.log('Fetching error',err)
-  //     }
-  // }
-  if (!islog?.isLogged) {
+
+  if (!cart?.isLogged) {
     Navigate("/login");
   }
-  useEffect(() => {
-    const us = JSON.parse(localStorage.getItem("loggedInUser"));
-    setData(us.cartItem);
-  }, []);
 
   let total = 0;
   let discount = 0;
