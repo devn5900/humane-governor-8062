@@ -13,8 +13,7 @@ import refer from '../../images/refer.png'
 
 const Thankyou = () => {
 
-    let loginuser = JSON.parse(localStorage.getItem('loggedInUser'))
-    console.log("loginuser:",loginuser.name)
+  
 
   return  (
     <Box>
@@ -39,10 +38,10 @@ const Thankyou = () => {
             </Box>
 
             <Box  mt='4' alignItems='left' textAlign='left'  pl='4'>
-                <Text fontSize='sm' letterSpacing={1} mt='2' >Delivering to :</Text>
-                <Text fontSize='md' letterSpacing={0.5} mt=''><span style={{fontWeight:'bold'}}>{loginuser.name} </span><span style={{color:'red',fontSize:'10px'}}>HOME</span></Text>
+                {/* <Text fontSize='sm' letterSpacing={1} mt='2' >Delivering to :</Text>
+                <Text fontSize='md' letterSpacing={0.5} mt=''><span style={{fontWeight:'bold'}} >{loginuser.name} </span><span style={{color:'red',fontSize:'10px'}}>HOME</span></Text>
                 <Text fontSize='sm' letterSpacing={1} mt='' >Gadge Nagar</Text>
-                <Text fontSize='sm' letterSpacing={1} mt='' >Amravati India, 444602</Text>
+                <Text fontSize='sm' letterSpacing={1} mt='' >Amravati India, 444602</Text> */}
 
                 <Divider borderColor='grey' w='101%' mt='8' mb='5' ml='-4'/>
 
