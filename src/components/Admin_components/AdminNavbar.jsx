@@ -10,7 +10,6 @@ import {
   VStack,
   Icon,
   useColorModeValue,
-  Link,
   Drawer,
   DrawerContent,
   Text,
@@ -20,6 +19,7 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
+  Image
 } from '@chakra-ui/react';
 import {
   FiMenu,
@@ -27,11 +27,11 @@ import {
   FiChevronDown,
 } from 'react-icons/fi';
 import {AiFillHome} from 'react-icons/ai'
-import {BsFillBellFill} from 'react-icons/bs'
 import {HiFolderAdd} from 'react-icons/hi'
 import {ImMan,ImWoman} from 'react-icons/im';
 import {FaChild,FaUsers} from 'react-icons/fa'
-import {RiAccountPinCircleFill,RiLogoutCircleFill} from 'react-icons/ri'
+import {RiLogoutCircleFill} from 'react-icons/ri'
+import logo from "../../images/boogylogo.png"
 
 
 
@@ -93,9 +93,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       h="full"
       {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          Boogy
-        </Text>
+        <Image src={logo}  w={120} alt="logo" />
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
@@ -160,13 +158,11 @@ const MobileNav = ({ onOpen, ...rest }) => {
         icon={<FiMenu />}
       />
 
-      <Text
-        display={{ base: 'flex', md: 'none' }}
-        fontSize="2xl"
-        fontFamily="monospace"
-        fontWeight="bold">
-        Logo
-      </Text>
+      
+        
+        
+        <Image display={{ base: 'flex', md: 'none' }} src={logo}  w={[70 ,90 ,120]} alt="logo" />
+      
 
       <HStack spacing={{ base: '0', md: '6' }}>
         <IconButton

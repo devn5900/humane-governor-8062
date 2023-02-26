@@ -47,6 +47,7 @@ export const adminReducer = (state = initialState, { type, payload }) => {
         error: false,
         accessories_Data: payload,
       };
+      
     case types.GET_USERS_SUCCESS:
       return {
         ...state,

@@ -1,5 +1,5 @@
 
-import { deleteMenDataAPI, getAssecccoriesDataAPI, getMensDataAPI, getWomensDataAPI, postMenDataAPI, updateProductAPI } from "./Admin.api";
+import { deleteMenDataAPI, getAssecccoriesDataAPI, getMensDataAPI, getusersDataApi, getWomensDataAPI, postMenDataAPI, updateProductAPI } from "./Admin.api";
 import * as types from "./Admin.type";
 
 // GET_ACTIONS
@@ -34,6 +34,17 @@ export const getAssecccoriesData=()=>async(dispatch)=>{
         dispatch({type:types.PRODUCT_ERROR})
     }
 }
+
+export const getUserSData=()=>async(dispatch)=>{
+    dispatch(({type:types.PRODUCT_LOADING}))
+    try {
+        let data=await getusersDataApi();
+        dispatch({type:types.GET_USERS_SUCCESS,payload:data})
+    } catch (error) {
+        dispatch({type:types.PRODUCT_ERROR})
+    }
+}
+
 
 
 // DELETE ACTIONS
@@ -70,7 +81,7 @@ export const deleteAccessoriesData=(id)=>async(dispatch)=>{
     dispatch(getAssecccoriesData())
 }
 
-// UPDATE Actions
+// UPDATE ACTIONS
 
 export const updateProductData=(id,newTitle,newPrice,newDiscount)=>async(dispatch)=>{
     dispatch({type:types.PRODUCT_LOADING})

@@ -23,6 +23,11 @@ export const getAssecccoriesDataAPI = async () => {
   return res.data;
 };
 
+export const getusersDataApi=async()=>{
+  let res= await axios.get(`https://busy-jade-mussel-sock.cyclic.app/signup`)
+  return res.data
+}
+
 // DELETE_APIS
 
 export const deleteMenDataAPI = async (id) => {
@@ -83,3 +88,4 @@ export const postAccenDataAPI=async(accProduct)=>{
   })
   return res.data
 }
+
