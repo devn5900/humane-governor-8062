@@ -50,7 +50,12 @@ const Login = () => {
       console.log(res);
       res = { ...res[0], isLogged: true };
       dispatch({ type: GET_LOGIN_USER, payload: { ...res, isLogged: true } });
-      Navigate("/");
+      console.log(res.name);
+      if (res.name == "admin") {
+        Navigate("/admin-dashboard");
+      } else {
+        Navigate("/");
+      }
     });
     setUser("");
     setPassword("");
