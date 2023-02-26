@@ -7,7 +7,7 @@ import {
 import thunk from "redux-thunk";
 import { adminReducer } from "./Admin/Admin.reducer";
 import { reducer as MensReducer } from "./mens/mens.reducer";
-
+import { reducer as WomensReducer } from "./womens/womens.reducer";
 import { reducer as accessoriesReducer } from "./Accessories/reducer";
 import { reducer as AuthReducer } from "./Auth/reducer";
 const combineReducer = combineReducers({
@@ -16,6 +16,7 @@ const combineReducer = combineReducers({
   admin: adminReducer,
   auth: AuthReducer,
   MensReducer,
+  WomensReducer
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

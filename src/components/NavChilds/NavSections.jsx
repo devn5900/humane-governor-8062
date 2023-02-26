@@ -13,7 +13,7 @@ const NavSections = () => {
         <Link textDecoration={"none"} to="/mens" as={ReachLink}>
           MEN
         </Link>
-        <Link textDecor={"none"} to="#" as={ReachLink}>
+        <Link textDecor={"none"} to="/womens" as={ReachLink}>
           WOMEN
         </Link>
         <Link textDecor={"none"} to="/accessories" as={ReachLink}>
