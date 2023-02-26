@@ -37,6 +37,11 @@ export const deleteMenDataAPI = async (id) => {
   return res.data;
 };
 
+export const deleteUserDataAPI=async(id)=>{
+  let res= await axios.delete(`https://busy-jade-mussel-sock.cyclic.app/signup/${id}`)
+  return res.data
+}
+
 // UPDATE_API
 
 export const updateProductAPI = async (id, newTitle, newPrice, newDiscount) => {

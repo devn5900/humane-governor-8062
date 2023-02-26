@@ -1,5 +1,5 @@
 
-import { deleteMenDataAPI, getAssecccoriesDataAPI, getMensDataAPI, getusersDataApi, getWomensDataAPI, postMenDataAPI, updateProductAPI } from "./Admin.api";
+import { deleteMenDataAPI, deleteUserDataAPI, getAssecccoriesDataAPI, getMensDataAPI, getusersDataApi, getWomensDataAPI, postMenDataAPI, updateProductAPI } from "./Admin.api";
 import * as types from "./Admin.type";
 
 // GET_ACTIONS
@@ -79,6 +79,16 @@ export const deleteAccessoriesData=(id)=>async(dispatch)=>{
         dispatch({type:types.PRODUCT_ERROR})
     }
     dispatch(getAssecccoriesData())
+}
+
+export const deleteUserData=(id)=>async(dispatch)=>{
+    dispatch({type:types.PRODUCT_LOADING});
+    try {
+         await deleteUserDataAPI(id)
+    } catch (error) {
+        dispatch({type:types.PRODUCT_ERROR})
+    }
+    dispatch(getUserSData())
 }
 
 // UPDATE ACTIONS

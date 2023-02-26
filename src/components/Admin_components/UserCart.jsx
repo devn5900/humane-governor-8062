@@ -4,12 +4,11 @@ import React from 'react'
 import {AiOutlineShoppingCart,AiOutlineDelete,AiOutlineMail} from 'react-icons/ai'
 import { BsRecord2,BsTelephoneInbound,BsThreeDotsVertical } from 'react-icons/bs'
 
-const UserCard = ({id , name , avatar , email, isLogged , cartItem}) => {
+const UserCard = ({id , name , avatar , email, isLogged , cartItem , handleDelete}) => {
   console.log("cartItem" , cartItem)
   return (
     <>
-    {
-      name=="admin"?"" :
+   
     
     <Card maxW='4xl' paddingX={3}  mt={30}boxShadow='md' w="100%" 
     
@@ -57,12 +56,14 @@ const UserCard = ({id , name , avatar , email, isLogged , cartItem}) => {
       <Button flex='1' _hover={{color:'black',backgroundColor:'yellow.500'}} variant='ghost' leftIcon={<BsRecord2 />}>
         Order
       </Button>
-      <Button flex='1' _hover={{color:'black',backgroundColor:'yellow.500'}} variant='ghost' leftIcon={<AiOutlineDelete />} >
+      <Button flex='1' _hover={{color:'black',backgroundColor:'yellow.500'}} variant='ghost' leftIcon={<AiOutlineDelete />}
+      onClick={()=>handleDelete(id)}
+       >
         Delete
       </Button>
     </CardFooter>
   </Card>
-}
+
   </>
   )
 }
