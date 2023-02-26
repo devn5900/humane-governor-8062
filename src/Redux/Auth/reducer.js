@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  ADD_ITEM,
   EMPTY_CART,
   GET_ADD_TO_CART,
   GET_LOGIN_USER,
@@ -29,11 +30,13 @@ export const reducer = (state = init, { type, payload }) => {
       };
     case GET_LOGOUT_USER:
       return init;
+    case ADD_ITEM:
+      return { ...state };
     case EMPTY_CART:
-      return{
+      return {
         ...state,
-        cartItem:[]
-    }
+        cartItem: [],
+      };
     default:
       return state;
   }
