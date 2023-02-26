@@ -28,116 +28,7 @@ const Login =  () => {
   const [show, setShow] = React.useState(false)
   const handleClick = () => setShow(!show)
   const [islog,setisLog]=useState( JSON.parse(localStorage.getItem('loggedInUser')))
-  // let isLogged=true;
-  // const isValidated = ()=> {
-    
-  //   let isLogged=true
-    
-  //   if (!user && !password) 
-  //   {
-  //     toast({
-  //       title: 'All fields are required',
-  //       position: 'top',
-  //       status: 'error',
-  //       duration: 5000,
-  //       isClosable: true,
-  //     }) 
-  //     // setIsLogged(false);
-  //     isLogged=false
-  //   }
-  //   else if (!user ) 
-  //   {
-  //     toast({
-  //       title: 'Username is required',
-  //       position: 'top',
-  //       status: 'error',
-  //       duration: 5000,
-  //       isClosable: true,
-  //     }) 
-  //     // setIsLogged(false);
-  //     isLogged=false
-  //   }
-  //   else if (!password ) 
-  //   {
-  //     toast({
-  //       title: 'Password is required',
-  //       position: 'top',
-  //       status: 'error',
-  //       duration: 5000,
-  //       isClosable: true,
-  //     }) 
-  //     // setIsLogged(false);
-  //     isLogged=false
-  //   }
-
-  //   return isLogged
-  // }
-
-  // const handleSubmit = async () => {
-  //   if(isValidated())
-
-  //   try{
-      
-  //     const res= await fetch(`https://busy-jade-mussel-sock.cyclic.app/signup?email=${user}`)
-
-  //     if(res.ok)
-  //     {
-  //       const data = await res.json();
-  //       console.log("user",user)
-  //       console.log("loginData:",data)
-        
-  //       if(data.length===0 || !data[0]?.email)
-  //       {
-  //         toast({
-  //           title: 'Incorrect login details. Please try again.',
-  //           position: 'top',
-  //           status: 'error',
-  //           duration: 5000,
-  //           isClosable: true,
-  //         }) 
-  //       }
-  //       else{
-  //         const obj={...data[0],isLogged:true}
-  //         localStorage.setItem("LoggedIn-user",JSON.stringify(obj))
-  //         toast({
-  //           title: 'Login Successfull',
-  //           position: 'top',
-  //           status: 'success',
-  //           duration: 5000,
-  //           isClosable: true,
-  //         }) 
-  //         Navigate('/')
-          
-  //       }
-  //     }
-  //     else{
-  //       // console.log('error')
-        
-  //       toast({
-  //         title: 'Incorrect login details. Please try again.',
-  //         position: 'top',
-  //         status: 'error',
-  //         duration: 5000,
-  //         isClosable: true,
-  //       }) 
-        
-  //     }
-
-      
-  //   }
-  //   catch(err)
-  //   {
-  //     console.log('error while fetching')
-  //     toast({
-  //       title: 'Error while fetching',
-  //       position: 'top',
-  //       status: 'error',
-  //       duration: 5000,
-  //       isClosable: true,
-  //     }) 
-  //   }
-  // }
-  // const handleSubmit = async () => {
+ 
  
   if(islog?.isLogged){
       // Navigate('/');
@@ -210,8 +101,8 @@ const authLogin=()=>{
           <Button w='100%' bg='#989898' color='white' p='30' fontSize='22' letterSpacing={1} onClick={handleSubmit}>LOGIN</Button>
         </Box>
         <Center>
-              <Text size='md' colorScheme='teal' fontSize='sm' mt='2'>
-                Click here for <Link to='/signup'color='teal'>SignUP</Link>
+              <Text size='md' colorScheme='teal' fontSize='sm' mt='2'>Click here for 
+                <Link to='/signup'><span style={{color:'#47cc82'}}>SignUp</span></Link>
               </Text>
             </Center>
       </Box>

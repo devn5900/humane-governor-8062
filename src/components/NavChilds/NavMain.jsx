@@ -25,8 +25,11 @@ const NavMain = () => {
   const [mapSearch, setMapSearch] = useState([]);
   const query = useThrottle(search, 500);
   const [load, setLoad] = useState(false);
-  const [cartData,setCartData]=useState( JSON.parse(localStorage.getItem('loggedInUser')))
-  // console.log('cartData:',cartData.cartItem.length)
+
+  const [cartData,setCartData]=useState( JSON.parse(localStorage.getItem('loggedInUser')) || [])
+  console.log('cartData:',cartData.cartItem.length)
+  let len = cartData.cartItem.length
+  
   const navItem = [
     {
       title: "MEN",
@@ -394,7 +397,8 @@ const NavMain = () => {
                 bg={"blackAlpha.900"}
                 color={"white"}
               >
-                {cartData.cartItem.length}
+                {cartData.cartItem.length===0? 0:len}
+                
               </Badge>
             </Box>
           </Link>

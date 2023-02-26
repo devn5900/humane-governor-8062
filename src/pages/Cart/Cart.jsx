@@ -14,7 +14,8 @@ import {
 
 const Cart =  () => {
     const [data,setData]= useState( []);
-  const Navigate = useNavigate()
+    const Navigate = useNavigate()
+    const [qty,setQty]= useState(1);
 
     const [islog,setisLog]=useState( JSON.parse(localStorage.getItem('loggedInUser')))
 
@@ -29,6 +30,19 @@ const Cart =  () => {
        setData(us.cartItem)
     },[])
 
+    console.log("data:",data)
+
+
+
+    const Remove = (id) => {
+        // const arr = data.filter((el)=>el.id!==id)
+        // setData(arr)
+        console.log("remove:",id)
+    }
+
+    const Quantity =(val)=>{
+        console.log(setQty(qty+(val)))
+    }
     
     let total=0;
     let discount=0;
@@ -41,7 +55,7 @@ const Cart =  () => {
             let x=Math.floor(el.price/8)
             discount += x
             subtotal=total-discount
-            console.log("total:",total)
+            // console.log("total:",total)
         })
     }
     else
@@ -87,7 +101,7 @@ const Cart =  () => {
 
                     {data.map((el,id)=>(
                         <Box 
-                        key={el.id} 
+                        key={id} 
                         border="1px solid #d8d4d4" p='2' mb='5' borderRadius={5} >
                
 
@@ -105,10 +119,11 @@ const Cart =  () => {
                                         </Box>
                                     
                                         
-                                        <Box justifyContent='center' textAlign='center' alignItems='center' w='16' h='8' border='1px solid grey' p='2' borderRadius='5' bg='white' fontSize='10'>Qty : <span style={{flexWeight:'bold'}}>1</span>
+                                        <Box display='flex' justifyContent='center' textAlign='center' alignItems='center' w='24' h='8'  p='2' borderRadius='5' bg='white' fontSize='10'>
                                             {/* add modal-98 */}
-                                            
-
+                                            <Button border='1px solid grey' bg='white' w='2' h='8' onClick={()=>Quantity(1)}>+</Button>
+                                            <span style={{flexWeight:'bold'}}>Qty:{qty}</span>
+                                            <Button  border='1px solid grey' bg='white' w='2' h='8'  onClick={()=>Quantity(-1)}>-</Button>
                                         </Box>
                                     </Box>
                                 </Box>
@@ -120,7 +135,7 @@ const Cart =  () => {
                             <Divider borderColor='#eae5e5'/>
 
                             <Box  display='flex' mt='5'>
-                                <Box justifyContent='center' textAlign='center' alignItems='center' w='35%' bg='white' border='0.5px solid #eae5e5' p='3' borderRadius='0px'>Remove</Box>
+                                <Box justifyContent='center' textAlign='center' alignItems='center' w='35%' bg='white' border='0.5px solid #eae5e5' p='3' borderRadius='0px' onClick={()=>Remove({id})}>Remove</Box>
                                 <Box justifyContent='center' textAlign='center' alignItems='center' w='65%' bg='white' border='0.5px solid #eae5e5' p='3' borderRadius='0px'>Move to Wishlist</Box>
                             </Box>
                         </Box>

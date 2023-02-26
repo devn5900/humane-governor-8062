@@ -140,7 +140,7 @@ if(res.status===500){
             {/* </Link> */}
             <Center>
               <Text size='md' colorScheme='teal' fontSize='sm' mt='2'>
-                Click here for <Link to='/login'color='teal'>login</Link>
+                Click here for <Link to='/login'color='teal'><span style={{color:'#47cc82'}}>Login</span></Link>
               </Text>
             </Center>
 

@@ -13,7 +13,7 @@ import boogylogo from '../../images/boogylogo.png'
 const EmptyCart = () => {
 
     let loginuser = JSON.parse(localStorage.getItem('loggedInUser'))
-    console.log("loginuser:",loginuser.name)
+    // console.log("loginuser:",loginuser.name)
 
   return (
     <Box>

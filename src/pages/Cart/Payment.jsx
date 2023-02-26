@@ -12,10 +12,10 @@ import {
 
 const Payment = () => {
     const [cartdata,setCartdata]= useState(JSON.parse(localStorage.getItem('loggedInUser')));
-    console.log('cartdata-pay:',cartdata.cartItem)
+    // console.log('cartdata-pay:',cartdata.cartItem)
 
     let loginuser = JSON.parse(localStorage.getItem('loggedInUser'))
-    console.log("loginuser:",loginuser.name)
+    // console.log("loginuser:",loginuser.name)
 
     let total=0;
     let discount=0;
